@@ -1,0 +1,17 @@
+{
+  "Name": "PermKit",
+  "Group": "de.thepawlow",
+  "Version": "1.0.0",
+  "ServerVersion": "*",
+  "Description": "Server",
+  "Main": "de.thepawlow.permkit.PermKitPlugin",
+  "Authors": [
+    {
+      "Name": "ThePawlow",
+      "Discord": "thepawlow"
+    }
+  ],
+  "DisabledByDefault": false,
+  "IncludesAssetPack": true,
+  "Dependencies": {}
+}
