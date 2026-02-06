@@ -53,7 +53,7 @@
                             <target>
                                 <copy
                                         file="${project.build.directory}/${project.build.finalName}.jar"
-                                        todir="/run/media/pawlow/Data (Games_Dev)/Hytale/servers/latest/mods"
+                                        todir="./servers/latest/mods"
                                         overwrite="true"/>
                             </target>
                         </configuration>
