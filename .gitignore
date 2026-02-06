@@ -27,3 +27,5 @@ replay_pid*
 target
 out
 .idea
+## Do not track local generated .lang files
+src/main/resources/Server/Languages/**/*.lang

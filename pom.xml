@@ -71,6 +71,16 @@
                     <include>Common/**/*</include>
                     <include>manifest.json</include>
                 </includes>
+                <excludes>
+                    <exclude>Server/Languages/**</exclude>
+                </excludes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>Server/Languages/**/*.lang</include>
+                </includes>
                 <filtering>true</filtering>
             </resource>
         </resources>
