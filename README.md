@@ -36,20 +36,61 @@
 ## 🔨 Building from Source
 
 ### Prerequisites
-- Java Development Kit (JDK)
-- Maven
+- ☕ Java Development Kit (JDK)
+- 📦 Maven
+- 🐍 Python 3
 
-### Build Commands
+### Step-by-Step Build Guide
 
-**With default output directory:**
+#### 1️⃣ Initialize Submodules
+First, clone the repository and initialize the submodules (includes HyLang for localization):
+```bash
+git submodule update --init --recursive
+```
+
+To update submodules to their latest versions:
+```bash
+git submodule update --remote
+```
+
+#### 2️⃣ Generate Language Files
+Navigate to the HyLang tool and set up the Python environment:
+```bash
+cd tools/HyLang
+python3 -m venv .venv
+source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
+pip install . --upgrade
+```
+
+Generate the `.lang` files from the YAML source:
+```bash
+./main.py --cli -i ../../src/main/resources/Server/Languages/en-US/ui.yaml
+```
+
+> 💡 **Tip:** This converts your localization files from YAML to the `.lang` format used by the mod.
+
+#### 3️⃣ Build the Mod
+Return to the project root and build:
+```bash
+cd ../..
+```
+
+**Standard build** (outputs to default `target/` directory):
 ```bash
 mvn package -f pom.xml
 ```
 
-**With custom output directory:**
+**Custom output build** (directly to your server's mods folder):
+```bash
+mvn package "-Dmod.output.dir=/path/to/your/server/mods" -f pom.xml
+```
+
+**Example:**
 ```bash
 mvn package "-Dmod.output.dir=/run/media/pawlow/Data (Games_Dev)/Hytale/servers/latest/mods" -f pom.xml
 ```
+
+✅ **Done!** Your compiled `.jar` file is ready to use.
 
 ---
 
