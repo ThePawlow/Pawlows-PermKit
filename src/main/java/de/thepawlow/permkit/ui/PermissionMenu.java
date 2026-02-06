@@ -20,11 +20,12 @@ import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import de.thepawlow.permkit.PermKitPlugin;
 
 import javax.annotation.Nonnull;
+import java.util.Date;
 
-public class PermissionMenuGui extends InteractiveCustomUIPage<PermissionMenuGui.BindingData> {
+public class PermissionMenu extends InteractiveCustomUIPage<PermissionMenu.BindingData> {
 
-    public PermissionMenuGui(@Nonnull PlayerRef playerRef, @Nonnull CustomPageLifetime lifetime) {
-        super(playerRef, lifetime, BindingData.CODEC);
+    public PermissionMenu(@Nonnull PlayerRef playerRef) {
+        super(playerRef, CustomPageLifetime.CanDismiss, BindingData.CODEC);
     }
 
     private static FunctionCodec<String, InteractionActions> InteractionActionsCodec = new FunctionCodec<>(
@@ -51,7 +52,6 @@ public class PermissionMenuGui extends InteractiveCustomUIPage<PermissionMenuGui
         var footerTitle = "By " + author + " V" + version;
 
         uiCommandBuilder.append("UI/PermissionMenu.ui");
-        // TODO - Get an instance of the Plugin to access its Version and Author
         uiCommandBuilder.set("#FooterTitle.Text", footerTitle);
 
         uiEventBuilder.addEventBinding(
@@ -92,15 +92,17 @@ public class PermissionMenuGui extends InteractiveCustomUIPage<PermissionMenuGui
                 player.sendMessage(Message.raw("Pressed invalid Action"));
                 break;
         }
-
-        sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
     }
 
     private void handleInteractionActionSettings(Ref<EntityStore> ref, Store<EntityStore> store) {
         Player player = store.getComponent(ref, Player.getComponentType());
         assert player != null;
 
-        player.sendMessage(Message.raw("Pressing ViewSettings"));
+        var timestamp = new Date().toString();
+
+        player.sendMessage(Message.raw("[" + timestamp + "]" +  "Pressing ViewSettings"));
+        PermissionSettingsPage settingsPage = new PermissionSettingsPage(playerRef);
+        player.getPageManager().openCustomPage(ref, store, settingsPage);
     }
 
     private void handleInteractionActionAudit(Ref<EntityStore> ref, Store<EntityStore> store) {
@@ -108,6 +110,7 @@ public class PermissionMenuGui extends InteractiveCustomUIPage<PermissionMenuGui
         assert player != null;
 
         player.sendMessage(Message.raw("Pressing ViewAuditLog"));
+        sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
     }
 
     private void handleInteractionActionManage(Ref<EntityStore> ref, Store<EntityStore> store) {
@@ -115,5 +118,6 @@ public class PermissionMenuGui extends InteractiveCustomUIPage<PermissionMenuGui
         assert player != null;
 
         player.sendMessage(Message.raw("Pressing ViewManage"));
+        sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
     }
 }

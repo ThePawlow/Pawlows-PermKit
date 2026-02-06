@@ -1,0 +1,179 @@
+$S = "../Sounds.ui";
+
+// Generics
+@GenericCheckbox = CheckBox {
+  Anchor: (Width: 22, Height: 22);
+  Background: (TexturePath: "assets/CheckBoxFramex64.png");
+  Padding: (Full: 4);
+  Style: CheckBoxStyle(
+    Unchecked: (
+      DefaultBackground: (Color: #00000000),
+      HoveredBackground: (Color: #00000000),
+      PressedBackground: (Color: #00000000),
+      DisabledBackground: (Color: #424242),
+      ChangedSound: (SoundPath: $S.@Untick, Volume: 6)
+    ),
+    Checked: (
+      DefaultBackground: (TexturePath: "assets/Checkmarkx19.png"),
+      HoveredBackground: (TexturePath: "assets/Checkmarkx19.png"),
+      PressedBackground: (TexturePath: "assets/Checkmarkx19.png"),
+      ChangedSound: (SoundPath: $S.@Tick, Volume: 6)
+    )
+  );
+};
+
+@CheckBoxWithLabelAndSublabel = Group {
+  @Checked = false;
+
+  LayoutMode: Left;
+
+  @GenericCheckbox #CheckBox {
+    Value: @Checked;
+  }
+
+  Group {
+    LayoutMode: Top;
+    Padding: (Left: 15);
+
+    Label {
+      Text: @TextTitle;
+      Style: (
+        FontSize: 16,
+        TextColor: #d8d8d8,
+        VerticalAlignment: Center,
+        RenderBold: true,
+        RenderUppercase: true
+      );
+    }
+
+    Label {
+      Text: @TextSubtitle;
+      Style: (
+        FontSize: 16,
+        TextColor: #989898,
+        VerticalAlignment: Center
+      );
+    }
+  }
+};
+
+@HorizontalSpacer = Group {
+  Anchor: (Height: 10);
+};
+
+@VerticalSpacer = Group {
+  Anchor: (Width: 10);
+};
+
+// Page
+Group {
+  Background: #000000(0.45);
+}
+
+Group #PermissionSettingsPage {
+  Anchor: (Width: 400, Height: 300);
+  Background: (TexturePath: "assets/BackgroundRoundedWBorderx64.png", Border: 10);
+  Padding: (Vertical: 10, Horizontal: 20);
+
+  Group {
+    LayoutMode: Top;
+    Padding: (Bottom: 10);
+    Anchor: (Top: 10, Bottom: 10);
+
+    Group #Header {
+      LayoutMode: Top;
+
+      Group #TitleGroup {
+        LayoutMode: Center;
+
+        Group #IconWrench {
+          LayoutMode: Middle;
+          Anchor: (Width: 32, Height: 32);
+          Background: (TexturePath: "assets/Icon_Wrenchx64.png");
+        }
+
+        Label #TitleLabel {
+          Text: "Settings";
+          Padding: (Left: 5);
+          Style: (FontSize: 18, TextColor: #d8d8d8, RenderBold: true, RenderUppercase: true);
+        }
+      }
+
+      Label #Subtitle {
+        Text: "Decide how things are handled!";
+        Padding: (Top: 15);
+        Style: (FontSize: 12, TextColor: #989898, RenderBold: true, RenderUppercase: true);
+      }
+    }
+
+    Group #SettingBox {
+      LayoutMode: Top;
+      Padding: (Top: 15);
+
+      @CheckBoxWithLabelAndSublabel #CheckboxUseAuditLogs {
+        @TextTitle = "Use Audit Logs";
+        @TextSubtitle = "Activating this allows the recording of actions";
+      }
+
+      @HorizontalSpacer {}
+
+      @CheckBoxWithLabelAndSublabel #CheckboxAllowOP {
+        @TextTitle = "Use OP";
+        @TextSubtitle = "Activating this allows the use of OP";
+      }
+    }
+  }
+
+  Group {
+    LayoutMode: Bottom;
+    Padding: (Bottom: 10);
+
+    Group {
+      LayoutMode: Left;
+
+      TextButton #SaveButton {
+        Padding: (Horizontal: 16, Vertical: 6);
+        Anchor: (Height: 44);
+        Style: TextButtonStyle(
+          Default: (
+            Background: (TexturePath: "assets/BackgroundHappyRoundedWBorderx64.png", Border: 10),
+            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+          ),
+          Hovered: (
+            Background: (TexturePath: "assets/BackgroundHappyRoundedWBorder_Hoveredx64.png", Border: 10),
+            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+          ),
+          Pressed: (
+            Background: (TexturePath: "assets/BackgroundHappyRoundedWBorder_Pressedx64.png", Border: 10),
+            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+          ),
+          Sounds: $S.@ButtonsLight,
+        );
+        Text: "Save";
+      }
+
+      @VerticalSpacer {}
+
+      TextButton #CloseButton {
+        Padding: (Horizontal: 21, Vertical: 6);
+        Anchor: (Height: 44);
+        Style: TextButtonStyle(
+          Default: (
+            Background: (TexturePath: "assets/BackgroundSadRoundedWBorderx64.png", Border: 10),
+            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+          ),
+          Hovered: (
+            Background: (TexturePath: "assets/BackgroundSadRoundedWBorder_Hoveredx64.png", Border: 10),
+            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+          ),
+          Pressed: (
+            Background: (TexturePath: "assets/BackgroundSadRoundedWBorder_Pressedx64.png", Border: 10),
+            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+          ),
+          Sounds: $S.@ButtonsCancel,
+        );
+        Text: "Discard";
+      }
+    }
+  }
+}

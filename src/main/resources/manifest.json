@@ -1,7 +1,7 @@
 {
   "Name": "PermKit",
   "Group": "de.thepawlow",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "ServerVersion": "*",
   "Description": "Server",
   "Main": "de.thepawlow.permkit.PermKitPlugin",

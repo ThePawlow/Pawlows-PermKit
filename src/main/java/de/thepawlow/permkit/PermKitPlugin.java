@@ -3,6 +3,7 @@ package de.thepawlow.permkit;
 import com.hypixel.hytale.logger.HytaleLogger;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
+import de.thepawlow.permkit.commands.DebugSpawnInstance;
 import de.thepawlow.permkit.commands.PermissionMenuCommand;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
@@ -21,6 +22,7 @@ public class PermKitPlugin extends JavaPlugin {
     @Override
     protected void setup() {
         this.getCommandRegistry().registerCommand(new PermissionMenuCommand());
+        this.getCommandRegistry().registerCommand(new DebugSpawnInstance());
     }
 
     @Override

@@ -4,11 +4,11 @@ $C.@PageOverlay {}
 @Spacer = Group { Anchor: (Height: 15); };
 
 $C.@DecoratedContainer {
-  Anchor: (Width: 400, Height: 300);
+  Anchor: (Width: 250, Height: 300);
 
   #Title {
     $C.@Title {
-      @Text = %ui.permissionmenu.title;
+      @Text = %ui.permkit.title;
     }
   }
 
@@ -16,32 +16,43 @@ $C.@DecoratedContainer {
     LayoutMode: Top;
 
     $C.@Title {
-      @Text = %ui.permissionmenu.subtitle;
+      @Text = %ui.permkit.subtitle;
       Style: (RenderBold: true, Wrap:true);
     }
 
     Group {
-      LayoutMode: Top;
-      Padding: (Top: 20);
+      LayoutMode: CenterMiddle;
 
-      $C.@TextButton #LoremOne {
-        Text: %ui.permissionmenu.actions.manage;
-        Anchor: (Height: 36);
+      Group {
+        LayoutMode: Top;
+        Padding: (Top: 20);
+
+        $C.@TextButton #ButtonManage {
+          Text: %ui.permkit.page.manage.title;
+          Anchor: (Height: 36);
+        }
+
+        @Spacer {}
+
+        $C.@TextButton #ButtonAudit {
+          Text: %ui.permkit.page.audit.title;
+          Anchor: (Height: 36);
+        }
+
+        @Spacer {}
+
+        $C.@TextButton #ButtonSettings {
+          Text: %ui.permkit.page.settings.title;
+          Anchor: (Height: 36);
+        }
       }
+    }
 
-      @Spacer {}
-
-      $C.@TextButton #LoremTwo {
-        Text: %ui.permissionmenu.actions.audit;
-        Anchor: (Height: 36);
-      }
-
-      @Spacer {}
-
-      $C.@TextButton #LoremThree {
-        Text: %ui.permissionmenu.actions.settings;
-        Anchor: (Height: 36);
-      }
+    Label #FooterTitle {
+      Text: "%PLACEHOLDER%";
+      Anchor: (Height: 36);
+      Padding: (Top: 10);
+      Style: (FontSize: 12, TextColor: #71717a, HorizontalAlignment: Center, RenderBold: true, RenderUppercase: true);
     }
   }
 }

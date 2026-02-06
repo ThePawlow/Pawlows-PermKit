@@ -8,6 +8,7 @@ public class PermissionMenuCommand extends AbstractCommandCollection {
     public PermissionMenuCommand() {
         super("permkit", "An UI for managing Permissions");
         this.addSubCommand(new PermissionMenuShowCommand());
+        this.addSubCommand(new PermissionMenuDebugSettingsCommand());
         this.requirePermission(HytalePermissions.fromCommand("op.add"));
     }
 
