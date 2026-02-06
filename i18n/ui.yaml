@@ -1,0 +1,7 @@
+permissionmenu:
+    title: PermKit
+    subtitle: The Permission Manager at your hands!
+    actions:
+        manage: Manage
+        audit: Audit
+        settings: Settings

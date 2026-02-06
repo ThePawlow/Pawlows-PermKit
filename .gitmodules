@@ -1,0 +1,3 @@
+[submodule "tools/Pawlows-HyLang"]
+	path = tools/Pawlows-HyLang
+	url = https://github.com/ThePawlow/Pawlows-HyLang
