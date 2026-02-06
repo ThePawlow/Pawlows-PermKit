@@ -12,6 +12,7 @@
         <maven.compiler.source>25</maven.compiler.source>
         <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mod.output.dir>./servers/latest/mods</mod.output.dir
     </properties>
 
     <repositories>
@@ -52,9 +53,9 @@
                         <configuration>
                             <target>
                                 <copy
-                                        file="${project.build.directory}/${project.build.finalName}.jar"
-                                        todir="./servers/latest/mods"
-                                        overwrite="true"/>
+                                  file="${project.build.directory}/${project.build.finalName}.jar"
+                                  todir="${mod.output.dir}"
+                                  overwrite="true"/>
                             </target>
                         </configuration>
                     </execution>
