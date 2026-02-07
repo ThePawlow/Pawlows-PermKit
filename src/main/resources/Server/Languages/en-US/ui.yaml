@@ -21,3 +21,10 @@ permissionmenu:
             op:
                 text: Use Audit Logs
                 usage: Activating this allows the recording of actions
+    manage:
+        title: Overview
+        actions:
+            category:
+                text: Category
+            permissions:
+                text: Permissions
