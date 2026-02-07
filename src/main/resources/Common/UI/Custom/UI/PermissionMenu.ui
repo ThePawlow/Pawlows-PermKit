@@ -21,7 +21,7 @@ Group #PermissionSettingsPage {
         LayoutMode: Center;
 
         Label #TitleLabel {
-          Text: %ui.permissionsmenu.title;
+          Text: %ui.permissionmenu.title;
           Padding: (Left: 5);
           Style: (FontSize: 18,
             TextColor: #d8d8d8,
@@ -45,71 +45,19 @@ Group #PermissionSettingsPage {
     Group #ButtonGroup {
       LayoutMode: Top;
 
-      TextButton #ButtonManage {
-        Padding: (Horizontal: 16, Vertical: 6);
-        Anchor: (Height: 44);
-
-        Style: TextButtonStyle(
-          Default: (
-            Background: (TexturePath: "assets/Primary_x64.png", Border: 10),
-            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-          ),
-          Hovered: (
-            Background: (TexturePath: "assets/Primary_Hovered_x64.png", Border: 10),
-            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-          ),
-          Pressed: (
-            Background: (TexturePath: "assets/Primary_Pressed_x64.png", Border: 10),
-            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-          ),
-          Sounds: $S.@ButtonsLight,
-        );
+      $G.@GNTextButtonPrimary #ButtonManage {
         Text: %ui.permissionmenu.main.actions.manage.text;
       }
 
       $G.@GNHorizontalSpacer {}
 
-      TextButton #ButtonAudit {
-        Padding: (Horizontal: 21, Vertical: 6);
-        Anchor: (Height: 44);
-        Style: TextButtonStyle(
-          Default: (
-            Background: (TexturePath: "assets/Primary_x64.png"),
-            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-          ),
-          Hovered: (
-            Background: (TexturePath: "assets/Primary_Hovered_x64.png"),
-            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-          ),
-          Pressed: (
-            Background: (TexturePath: "assets/Primary_Pressed_x64.png"),
-            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-          ),
-          Sounds: $S.@ButtonsCancel,
-        );
+      $G.@GNTextButtonPrimary #ButtonAudit {
         Text: %ui.permissionmenu.main.actions.audit.text;
       }
 
       $G.@GNHorizontalSpacer {}
 
-      TextButton #ButtonSettings {
-        Padding: (Horizontal: 21, Vertical: 6);
-        Anchor: (Height: 44);
-        Style: TextButtonStyle(
-          Default: (
-            Background: (TexturePath: "assets/Primary_x64.png"),
-            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-          ),
-          Hovered: (
-            Background: (TexturePath: "assets/Primary_Hovered_x64.png"),
-            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-          ),
-          Pressed: (
-            Background: (TexturePath: "assets/Primary_Pressed_x64.png"),
-            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-          ),
-          Sounds: $S.@ButtonsCancel,
-        );
+      $G.@GNTextButtonPrimary #ButtonSettings {
         Text: %ui.permissionmenu.main.actions.settings.text;
       }
     }

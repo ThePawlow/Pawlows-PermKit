@@ -1,0 +1,108 @@
+$S = "../Sounds.ui";
+$G = "Generics.ui";
+
+$G.@GNOverlayDarkend {}
+
+Group #PermissionManageMainPage {
+  Anchor: (Width: 800, Height: 600);
+  Background: (TexturePath: "assets/BackgroundRoundedWBorderx64.png", Border: 10);
+  Padding: (Vertical: 10, Horizontal: 20);
+
+  Group {
+    LayoutMode: Top;
+    Padding: (Bottom: 10);
+    Anchor: (Top: 10, Bottom: 10);
+
+    Group #Header {
+      LayoutMode: Top;
+
+      Group #TitleGroup {
+        LayoutMode: Center;
+
+        Group #IconWrench {
+          LayoutMode: Middle;
+          Anchor: (Width: 32, Height: 32);
+          Background: (TexturePath: "assets/Icon_Wrenchx64.png");
+        }
+
+        Label #TitleLabel {
+          Text: %ui.permissionmenu.main.actions.manage.text;
+          Padding: (Left: 5);
+          Style: (
+            FontSize: 18,
+            TextColor: #d8d8d8,
+            RenderBold: true,
+            RenderUppercase: true,
+            FontName: "Secondary"
+          );
+        }
+      }
+
+      Label #Subtitle {
+        Text: %ui.permissionmenu.slogan;
+        Padding: (Top: 15);
+        Style: (FontSize: 12, TextColor: #989898, RenderBold: true, RenderUppercase: true);
+      }
+    }
+
+    Group #DynamicEntryList {
+      LayoutMode: TopScrolling;
+      Padding: (Top: 10);
+//      Background: #0a1119(0.5);
+      ScrollbarStyle: (
+        Spacing: 6,
+        Size: 6,
+        Background: (Color: #989898(0.7)),
+        Handle: (Color: #0a1119(0.5)),
+        HoveredHandle: (Color: #0a1119(0.8)),
+        DraggedHandle: (Color: #0a1119(0.6)),
+      );
+    }
+  }
+}
+
+Group #PermissionManageOverviewPage {
+  Anchor: (Left: 20, Width: 200, Height: 600);
+  Background: (TexturePath: "assets/BackgroundRoundedWBorderx64.png", Border: 10);
+  Padding: (Vertical: 10, Horizontal: 20);
+
+  Group {
+    LayoutMode: Top;
+
+    Group #TitleGroup {
+      LayoutMode: Center;
+
+      Group #IconWrench {
+        Anchor: (Width: 32, Height: 32);
+        Background: (TexturePath: "assets/Icon_OpenBookx64.png");
+      }
+
+      Label #TitleLabel {
+        Text: "Overview";
+        Anchor: (Height: 18);
+        Padding: (Left: 5);
+
+        Style: (
+          FontSize: 18,
+          TextColor: #d8d8d8,
+          RenderBold: true,
+          RenderUppercase: true,
+          FontName: "Secondary"
+        );
+      }
+    }
+
+    $G.@GNHorizontalSpacer {}
+    $G.@GNHorizontalSpacer {}
+
+    $G.@GNTextButtonPrimary #ButtonCategory {
+      Text: "Category";
+    }
+
+    $G.@GNHorizontalSpacer {}
+
+    $G.@GNTextButtonPrimary #ButtonPermissions {
+      Text: "Permissions";
+    }
+  }
+}

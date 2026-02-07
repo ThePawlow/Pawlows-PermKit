@@ -148,7 +148,9 @@ public class PermissionMenu extends InteractiveCustomUIPage<PermissionMenu.Bindi
 
         var timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         player.sendMessage(Message.raw("[" + timestamp + "] " + "Pressing ViewManage"));
-        sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
+
+        PermissionManagePage page = new PermissionManagePage(playerRef);
+        player.getPageManager().openCustomPage(ref, store, page);
     }
     //endregion
 }

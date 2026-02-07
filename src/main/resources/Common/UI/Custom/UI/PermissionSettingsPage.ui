@@ -70,48 +70,14 @@ Group #PermissionSettingsPage {
     Group {
       LayoutMode: Left;
 
-      TextButton #ButtonSave {
-        Padding: (Horizontal: 16, Vertical: 6);
-        Anchor: (Height: 44);
-        Style: TextButtonStyle(
-          Default: (
-            Background: (TexturePath: "assets/BackgroundHappyRoundedWBorderx64.png", Border: 10),
-            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-          ),
-          Hovered: (
-            Background: (TexturePath: "assets/BackgroundHappyRoundedWBorder_Hoveredx64.png", Border: 10),
-            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-          ),
-          Pressed: (
-            Background: (TexturePath: "assets/BackgroundHappyRoundedWBorder_Pressedx64.png", Border: 10),
-            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-          ),
-          Sounds: $S.@ButtonsLight,
-        );
+      $G.@GNTextButtonHappy #ButtonSave {
         Text: %ui.permissionmenu.settings.actions.save.text;
       }
 
       $G.@GNVerticalSpacer {}
 
-      TextButton #ButtonDiscard {
-        Padding: (Horizontal: 21, Vertical: 6);
-        Anchor: (Height: 44);
-        Style: TextButtonStyle(
-          Default: (
-            Background: (TexturePath: "assets/BackgroundSadRoundedWBorderx64.png", Border: 10),
-            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-          ),
-          Hovered: (
-            Background: (TexturePath: "assets/BackgroundSadRoundedWBorder_Hoveredx64.png", Border: 10),
-            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-          ),
-          Pressed: (
-            Background: (TexturePath: "assets/BackgroundSadRoundedWBorder_Pressedx64.png", Border: 10),
-            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-          ),
-          Sounds: $S.@ButtonsCancel,
-        );
-        Text:  %ui.permissionmenu.settings.actions.discard.text;
+      $G.@GNTextButtonSad #ButtonDiscard {
+        Text: %ui.permissionmenu.settings.actions.discard.text;
       }
     }
   }

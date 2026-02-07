@@ -1,0 +1,37 @@
+Group #EntryItem {
+  LayoutMode: Top;
+  Padding: (Bottom: 25);
+
+  Group {
+  LayoutMode: Left;
+
+    Label #Title {
+      Text: "de.thepawlow.permissionui (5)";
+      Anchor: (Height: 16);
+      Padding: (Right: 10);
+
+      Style: (
+        FontSize: 18,
+        TextColor: #d8d8d8,
+        RenderBold: true,
+        RenderUppercase: true,
+        FontName: "Secondary"
+      );
+    }
+
+    Group #IconArrow {
+      Anchor: (Width: 16, Height: 16);
+      Background: (TexturePath: "../assets/ArrowRight@16.png");
+    }
+  }
+
+  Group #Entries {
+     LayoutMode: Top;
+
+     Label #lorem {
+       Text: "de.thepawlow";
+       Padding: (Top: 10);
+       Anchor: (Height: 16);
+     }
+  }
+}
