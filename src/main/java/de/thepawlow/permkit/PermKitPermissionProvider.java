@@ -21,12 +21,14 @@ public final class PermKitPermissionProvider extends BlockingDiskFile implements
     @Nonnull
     public static final String DEFAULT_GROUP = "Default";
     @Nonnull
+    public static final String GROUP = "PermKit";
+    @Nonnull
     public static final Set<String> DEFAULT_GROUP_LIST = Set.of(PermKitPermissionProvider.DEFAULT_GROUP);
     @Nonnull
     public static final Map<String, Set<String>> DEFAULT_GROUPS = Map.ofEntries(
             Map.entry(PermKitPermissionProvider.OP_GROUP, Set.of()),
             Map.entry(PermKitPermissionProvider.DEFAULT_GROUP, Set.of()),
-            Map.entry("PermKit", Set.of("de.thepawlow.permkit.command.permkit.*", PermKitPermissions.UI.BASE))
+            Map.entry(PermKitPermissionProvider.GROUP, Set.of("de.thepawlow.permkit.command.permkit.*", PermKitPermissions.UI.ANY))
     );
 
     @Nonnull
