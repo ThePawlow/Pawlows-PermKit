@@ -78,7 +78,7 @@ Group #PermissionManageOverviewPage {
       }
 
       Label #TitleLabel {
-        Text: "Overview";
+        Text: %ui.permissionmenu.manage.title;
         Anchor: (Height: 18);
         Padding: (Left: 5);
 
@@ -96,13 +96,13 @@ Group #PermissionManageOverviewPage {
     $G.@GNHorizontalSpacer {}
 
     $G.@GNTextButtonPrimary #ButtonCategory {
-      Text: "Category";
+      Text: %ui.permissionmenu.manage.actions.category.text;
     }
 
     $G.@GNHorizontalSpacer {}
 
     $G.@GNTextButtonPrimary #ButtonPermissions {
-      Text: "Permissions";
+      Text: %ui.permissionmenu.manage.actions.permissions.text;
     }
   }
 }
