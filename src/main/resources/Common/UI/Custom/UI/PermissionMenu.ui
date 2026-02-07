@@ -1,58 +1,117 @@
+$S = "../Sounds.ui";
 $C = "../Common.ui";
-$C.@PageOverlay {}
+$G = "Generics.ui";
 
-@Spacer = Group { Anchor: (Height: 15); };
+$G.@GNOverlayDarkend {}
 
-$C.@DecoratedContainer {
-  Anchor: (Width: 250, Height: 300);
+Group #PermissionSettingsPage {
+  Anchor: (Width: 400, Height: 250);
+  Background: (TexturePath: "assets/BackgroundRoundedWBorderx64.png", Border: 10);
+  Padding: (Vertical: 10, Horizontal: 20);
 
-  #Title {
-    $C.@Title {
-      @Text = %ui.permkit.title;
-    }
-  }
-
-  #Content {
+  Group {
     LayoutMode: Top;
+    Padding: (Bottom: 10);
+    Anchor: (Top: 10, Bottom: 10);
 
-    $C.@Title {
-      @Text = %ui.permkit.subtitle;
-      Style: (RenderBold: true, Wrap:true);
-    }
+    Group #Header {
+      LayoutMode: Center;
 
-    Group {
-      LayoutMode: CenterMiddle;
+      Group #TitleGroup {
+        LayoutMode: Center;
 
-      Group {
-        LayoutMode: Top;
-        Padding: (Top: 20);
-
-        $C.@TextButton #ButtonManage {
-          Text: %ui.permkit.page.manage.title;
-          Anchor: (Height: 36);
+        Label #TitleLabel {
+          Text: "Pawlow's PermKit";
+          Padding: (Left: 5);
+          Style: (FontSize: 18,
+            TextColor: #d8d8d8,
+            RenderBold: true,
+            RenderUppercase: true,
+            FontName: "Secondary"
+          );
         }
+      }
 
-        @Spacer {}
-
-        $C.@TextButton #ButtonAudit {
-          Text: %ui.permkit.page.audit.title;
-          Anchor: (Height: 36);
-        }
-
-        @Spacer {}
-
-        $C.@TextButton #ButtonSettings {
-          Text: %ui.permkit.page.settings.title;
-          Anchor: (Height: 36);
-        }
+      Label #Subtitle {
+        Text: "%VERSION%";
+        Padding: (Top: 15);
+        Style: (FontSize: 12, TextColor: #989898, RenderBold: true, RenderUppercase: true);
       }
     }
 
-    Label #FooterTitle {
-      Text: "%PLACEHOLDER%";
-      Anchor: (Height: 36);
-      Padding: (Top: 10);
-      Style: (FontSize: 12, TextColor: #71717a, HorizontalAlignment: Center, RenderBold: true, RenderUppercase: true);
+    $G.@GNHorizontalSpacer {}
+    $G.@GNHorizontalSpacer {}
+
+    Group #ButtonGroup {
+      LayoutMode: Top;
+
+      TextButton #ButtonManage {
+        Padding: (Horizontal: 16, Vertical: 6);
+        Anchor: (Height: 44);
+
+        Style: TextButtonStyle(
+          Default: (
+            Background: (TexturePath: "assets/Primary_x64.png", Border: 10),
+            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+          ),
+          Hovered: (
+            Background: (TexturePath: "assets/Primary_Hovered_x64.png", Border: 10),
+            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+          ),
+          Pressed: (
+            Background: (TexturePath: "assets/Primary_Pressed_x64.png", Border: 10),
+            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+          ),
+          Sounds: $S.@ButtonsLight,
+        );
+        Text: "Manage";
+      }
+
+      $G.@GNHorizontalSpacer {}
+
+      TextButton #ButtonAudit {
+        Padding: (Horizontal: 21, Vertical: 6);
+        Anchor: (Height: 44);
+        Style: TextButtonStyle(
+          Default: (
+            Background: (TexturePath: "assets/Primary_x64.png"),
+            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+          ),
+          Hovered: (
+            Background: (TexturePath: "assets/Primary_Hovered_x64.png"),
+            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+          ),
+          Pressed: (
+            Background: (TexturePath: "assets/Primary_Pressed_x64.png"),
+            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+          ),
+          Sounds: $S.@ButtonsCancel,
+        );
+        Text: "Audit";
+      }
+
+      $G.@GNHorizontalSpacer {}
+
+      TextButton #ButtonSettings {
+        Padding: (Horizontal: 21, Vertical: 6);
+        Anchor: (Height: 44);
+        Style: TextButtonStyle(
+          Default: (
+            Background: (TexturePath: "assets/Primary_x64.png"),
+            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+          ),
+          Hovered: (
+            Background: (TexturePath: "assets/Primary_Hovered_x64.png"),
+            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+          ),
+          Pressed: (
+            Background: (TexturePath: "assets/Primary_Pressed_x64.png"),
+            LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+          ),
+          Sounds: $S.@ButtonsCancel,
+        );
+        Text: "Settings";
+      }
     }
   }
 }

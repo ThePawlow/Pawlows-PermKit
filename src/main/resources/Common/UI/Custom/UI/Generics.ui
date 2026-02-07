@@ -1,0 +1,69 @@
+$S = "../Sounds.ui";
+
+@GNOverlayDarkend = Group {
+  Background: #000000(0.45);
+};
+
+@GNCheckbox = CheckBox {
+  Anchor: (Width: 22, Height: 22);
+  Background: (TexturePath: "assets/CheckBoxFramex64.png");
+  Padding: (Full: 4);
+  Style: CheckBoxStyle(
+    Unchecked: (
+      DefaultBackground: (Color: #00000000),
+      HoveredBackground: (Color: #00000000),
+      PressedBackground: (Color: #00000000),
+      DisabledBackground: (Color: #424242),
+      ChangedSound: (SoundPath: $S.@Untick, Volume: 6)
+    ),
+    Checked: (
+      DefaultBackground: (TexturePath: "assets/Checkmarkx19.png"),
+      HoveredBackground: (TexturePath: "assets/Checkmarkx19.png"),
+      PressedBackground: (TexturePath: "assets/Checkmarkx19.png"),
+      ChangedSound: (SoundPath: $S.@Tick, Volume: 6)
+    )
+  );
+};
+
+@GNCheckBoxWithLabelAndSublabel = Group {
+  @Checked = false;
+
+  LayoutMode: Left;
+
+  @GNCheckbox #CheckBox {
+    Value: @Checked;
+  }
+
+  Group {
+    LayoutMode: Top;
+    Padding: (Left: 15);
+
+    Label {
+      Text: @TextTitle;
+      Style: (
+        FontSize: 16,
+        TextColor: #d8d8d8,
+        VerticalAlignment: Center,
+        RenderBold: true,
+        RenderUppercase: true
+      );
+    }
+
+    Label {
+      Text: @TextSubtitle;
+      Style: (
+        FontSize: 16,
+        TextColor: #989898,
+        VerticalAlignment: Center
+      );
+    }
+  }
+};
+
+@GNHorizontalSpacer = Group {
+  Anchor: (Height: 10);
+};
+
+@GNVerticalSpacer = Group {
+  Anchor: (Width: 10);
+};

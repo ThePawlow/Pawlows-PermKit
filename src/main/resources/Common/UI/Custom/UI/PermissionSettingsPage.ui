@@ -1,74 +1,7 @@
 $S = "../Sounds.ui";
+$G = "Generics.ui";
 
-// Generics
-@GenericCheckbox = CheckBox {
-  Anchor: (Width: 22, Height: 22);
-  Background: (TexturePath: "assets/CheckBoxFramex64.png");
-  Padding: (Full: 4);
-  Style: CheckBoxStyle(
-    Unchecked: (
-      DefaultBackground: (Color: #00000000),
-      HoveredBackground: (Color: #00000000),
-      PressedBackground: (Color: #00000000),
-      DisabledBackground: (Color: #424242),
-      ChangedSound: (SoundPath: $S.@Untick, Volume: 6)
-    ),
-    Checked: (
-      DefaultBackground: (TexturePath: "assets/Checkmarkx19.png"),
-      HoveredBackground: (TexturePath: "assets/Checkmarkx19.png"),
-      PressedBackground: (TexturePath: "assets/Checkmarkx19.png"),
-      ChangedSound: (SoundPath: $S.@Tick, Volume: 6)
-    )
-  );
-};
-
-@CheckBoxWithLabelAndSublabel = Group {
-  @Checked = false;
-
-  LayoutMode: Left;
-
-  @GenericCheckbox #CheckBox {
-    Value: @Checked;
-  }
-
-  Group {
-    LayoutMode: Top;
-    Padding: (Left: 15);
-
-    Label {
-      Text: @TextTitle;
-      Style: (
-        FontSize: 16,
-        TextColor: #d8d8d8,
-        VerticalAlignment: Center,
-        RenderBold: true,
-        RenderUppercase: true
-      );
-    }
-
-    Label {
-      Text: @TextSubtitle;
-      Style: (
-        FontSize: 16,
-        TextColor: #989898,
-        VerticalAlignment: Center
-      );
-    }
-  }
-};
-
-@HorizontalSpacer = Group {
-  Anchor: (Height: 10);
-};
-
-@VerticalSpacer = Group {
-  Anchor: (Width: 10);
-};
-
-// Page
-Group {
-  Background: #000000(0.45);
-}
+$G.@GNOverlayDarkend {}
 
 Group #PermissionSettingsPage {
   Anchor: (Width: 400, Height: 300);
@@ -95,7 +28,13 @@ Group #PermissionSettingsPage {
         Label #TitleLabel {
           Text: "Settings";
           Padding: (Left: 5);
-          Style: (FontSize: 18, TextColor: #d8d8d8, RenderBold: true, RenderUppercase: true);
+          Style: (
+            FontSize: 18,
+            TextColor: #d8d8d8,
+            RenderBold: true,
+            RenderUppercase: true,
+            FontName: "Secondary"
+          );
         }
       }
 
@@ -110,14 +49,14 @@ Group #PermissionSettingsPage {
       LayoutMode: Top;
       Padding: (Top: 15);
 
-      @CheckBoxWithLabelAndSublabel #CheckboxUseAuditLogs {
+      $G.@GNCheckBoxWithLabelAndSublabel #CheckboxUseAuditLogs {
         @TextTitle = "Use Audit Logs";
         @TextSubtitle = "Activating this allows the recording of actions";
       }
 
-      @HorizontalSpacer {}
+      $G.@GNHorizontalSpacer {}
 
-      @CheckBoxWithLabelAndSublabel #CheckboxAllowOP {
+      $G.@GNCheckBoxWithLabelAndSublabel #CheckboxAllowOP {
         @TextTitle = "Use OP";
         @TextSubtitle = "Activating this allows the use of OP";
       }
@@ -131,7 +70,7 @@ Group #PermissionSettingsPage {
     Group {
       LayoutMode: Left;
 
-      TextButton #SaveButton {
+      TextButton #ButtonSave {
         Padding: (Horizontal: 16, Vertical: 6);
         Anchor: (Height: 44);
         Style: TextButtonStyle(
@@ -152,9 +91,9 @@ Group #PermissionSettingsPage {
         Text: "Save";
       }
 
-      @VerticalSpacer {}
+      $G.@GNVerticalSpacer {}
 
-      TextButton #CloseButton {
+      TextButton #ButtonDiscard {
         Padding: (Horizontal: 21, Vertical: 6);
         Anchor: (Height: 44);
         Style: TextButtonStyle(
