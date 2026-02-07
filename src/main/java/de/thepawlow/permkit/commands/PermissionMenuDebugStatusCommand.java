@@ -18,7 +18,6 @@ public class PermissionMenuDebugStatusCommand extends AbstractPlayerCommand {
 
     public PermissionMenuDebugStatusCommand() {
         super("status", "debug only");
-        this.addSubCommand(new PermissionMenuShowCommand());
     }
 
     @Override
