@@ -93,7 +93,7 @@ public class PermissionSettingsPage extends InteractiveCustomUIPage<PermissionSe
         assert player != null;
 
         var timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        player.sendMessage(Message.raw("[" + timestamp + "] " + "Pressing ViewManage"));
+        player.sendMessage(Message.raw("[" + timestamp + "] " + "Pressing Discard"));
 
         player.getPageManager().openCustomPage(ref, store, new PermissionMenu(playerRef));
         sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
@@ -104,7 +104,7 @@ public class PermissionSettingsPage extends InteractiveCustomUIPage<PermissionSe
         assert player != null;
 
         var timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        player.sendMessage(Message.raw("[" + timestamp + "] " + "Pressing ViewManage"));
+        player.sendMessage(Message.raw("[" + timestamp + "] " + "Pressing Save"));
 
         sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
     }
