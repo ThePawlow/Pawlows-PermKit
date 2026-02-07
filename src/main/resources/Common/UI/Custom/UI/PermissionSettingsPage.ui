@@ -26,7 +26,7 @@ Group #PermissionSettingsPage {
         }
 
         Label #TitleLabel {
-          Text: "Settings";
+          Text: %ui.permissionmenu.main.actions.settings.text;
           Padding: (Left: 5);
           Style: (
             FontSize: 18,
@@ -39,7 +39,7 @@ Group #PermissionSettingsPage {
       }
 
       Label #Subtitle {
-        Text: "Decide how things are handled!";
+        Text: %ui.permissionmenu.slogan;
         Padding: (Top: 15);
         Style: (FontSize: 12, TextColor: #989898, RenderBold: true, RenderUppercase: true);
       }
@@ -50,15 +50,15 @@ Group #PermissionSettingsPage {
       Padding: (Top: 15);
 
       $G.@GNCheckBoxWithLabelAndSublabel #CheckboxUseAuditLogs {
-        @TextTitle = "Use Audit Logs";
-        @TextSubtitle = "Activating this allows the recording of actions";
+        @TextTitle = %ui.permissionmenu.settings.actions.auditlogs.text;
+        @TextSubtitle = %ui.permissionmenu.settings.actions.auditlogs.usage;
       }
 
       $G.@GNHorizontalSpacer {}
 
       $G.@GNCheckBoxWithLabelAndSublabel #CheckboxAllowOP {
-        @TextTitle = "Use OP";
-        @TextSubtitle = "Activating this allows the use of OP";
+        @TextTitle = %ui.permissionmenu.settings.actions.op.text;
+        @TextSubtitle = %ui.permissionmenu.settings.actions.op.usage;
       }
     }
   }
@@ -88,7 +88,7 @@ Group #PermissionSettingsPage {
           ),
           Sounds: $S.@ButtonsLight,
         );
-        Text: "Save";
+        Text: %ui.permissionmenu.settings.actions.save.text;
       }
 
       $G.@GNVerticalSpacer {}
@@ -111,7 +111,7 @@ Group #PermissionSettingsPage {
           ),
           Sounds: $S.@ButtonsCancel,
         );
-        Text: "Discard";
+        Text:  %ui.permissionmenu.settings.actions.discard.text;
       }
     }
   }

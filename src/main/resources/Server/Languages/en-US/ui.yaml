@@ -1,7 +1,23 @@
 permissionmenu:
-    title: PermKit
-    subtitle: The Permission Manager at your hands!
-    actions:
-        manage: Manage
-        audit: Audit
-        settings: Settings
+    title: Pawlow's PermKit
+    slogan: Decide how things are handled!
+    main:
+        actions:
+            manage:
+                text: Manage
+            audit:
+                text: Audit
+            settings:
+                text: Settings
+    settings:
+        actions:
+            save:
+                text: Save
+            discard:
+                text: Discard
+            auditlogs:
+                text: Use Audit Logs
+                usage: Activating this allows the recording of actions
+            op:
+                text: Use Audit Logs
+                usage: Activating this allows the recording of actions

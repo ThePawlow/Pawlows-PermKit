@@ -21,7 +21,7 @@ Group #PermissionSettingsPage {
         LayoutMode: Center;
 
         Label #TitleLabel {
-          Text: "Pawlow's PermKit";
+          Text: %ui.permissionsmenu.title;
           Padding: (Left: 5);
           Style: (FontSize: 18,
             TextColor: #d8d8d8,
@@ -64,7 +64,7 @@ Group #PermissionSettingsPage {
           ),
           Sounds: $S.@ButtonsLight,
         );
-        Text: "Manage";
+        Text: %ui.permissionmenu.main.actions.manage.text;
       }
 
       $G.@GNHorizontalSpacer {}
@@ -87,7 +87,7 @@ Group #PermissionSettingsPage {
           ),
           Sounds: $S.@ButtonsCancel,
         );
-        Text: "Audit";
+        Text: %ui.permissionmenu.main.actions.audit.text;
       }
 
       $G.@GNHorizontalSpacer {}
@@ -110,7 +110,7 @@ Group #PermissionSettingsPage {
           ),
           Sounds: $S.@ButtonsCancel,
         );
-        Text: "Settings";
+        Text: %ui.permissionmenu.main.actions.settings.text;
       }
     }
   }
