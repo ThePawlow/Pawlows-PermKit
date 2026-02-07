@@ -57,7 +57,7 @@ public class PermissionMenu extends InteractiveCustomUIPage<PermissionMenu.Bindi
         var version = PermKitPlugin.get().getManifest().getVersion();
 
         uiCommandBuilder.append("UI/PermissionMenu.ui");
-        uiCommandBuilder.set("#Subtitle.Text", "V " + version.toString()); // Plugin Version
+        uiCommandBuilder.set("#Subtitle.Text", "V " + version.toString());
 
         uiEventBuilder.addEventBinding(
             CustomUIEventBindingType.Activating,

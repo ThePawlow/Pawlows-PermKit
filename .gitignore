@@ -27,5 +27,7 @@ replay_pid*
 target
 out
 .idea
+.egg-info
+
 ## Do not track local generated .lang files
 src/main/resources/Server/Languages/**/*.lang
