@@ -25,8 +25,9 @@ public class PermKitPlugin extends JavaPlugin {
         // Replacing it with our integration
         PermissionsModule.get().removeProvider(PermissionsModule.get().getFirstPermissionProvider());
         var permkitProvider = new PermKitPermissionProvider();
-        permkitProvider.syncLoad();
         PermissionsModule.get().addProvider(permkitProvider);
+        permkitProvider.syncLoad();
+
 
         // Registering our commands afterwards.
         this.getCommandRegistry().registerCommand(new PermissionMenuCommands());

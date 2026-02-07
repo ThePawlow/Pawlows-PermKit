@@ -17,6 +17,7 @@ import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import de.thepawlow.permkit.PermKitPlugin;
+import de.thepawlow.permkit.PermKitPermissions;
 
 import javax.annotation.Nonnull;
 import java.text.SimpleDateFormat;
@@ -104,6 +105,13 @@ public class PermissionMenu extends InteractiveCustomUIPage<PermissionMenu.Bindi
         Player player = store.getComponent(ref, Player.getComponentType());
         assert player != null;
 
+        if (!player.hasPermission(PermKitPermissions.UI.SETTINGS))
+        {
+            player.sendMessage(Message.raw("Cannot interact with ViewSettings right now."));
+            sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
+            return;
+        }
+
         var timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         player.sendMessage(Message.raw("[" + timestamp + "] " + "Pressing ViewSettings"));
 
@@ -115,6 +123,13 @@ public class PermissionMenu extends InteractiveCustomUIPage<PermissionMenu.Bindi
         Player player = store.getComponent(ref, Player.getComponentType());
         assert player != null;
 
+        if (!player.hasPermission(PermKitPermissions.UI.AUDIT))
+        {
+            player.sendMessage(Message.raw("Cannot interact with ViewAudit right now."));
+            sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
+            return;
+        }
+
         var timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         player.sendMessage(Message.raw("[" + timestamp + "] " + "Pressing ViewAuditLog"));
         sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
@@ -123,6 +138,13 @@ public class PermissionMenu extends InteractiveCustomUIPage<PermissionMenu.Bindi
     private void interactionManage(Ref<EntityStore> ref, Store<EntityStore> store) {
         Player player = store.getComponent(ref, Player.getComponentType());
         assert player != null;
+
+        if (!player.hasPermission(PermKitPermissions.UI.MANAGE))
+        {
+            player.sendMessage(Message.raw("Cannot interact with ViewMange right now."));
+            sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
+            return;
+        }
 
         var timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         player.sendMessage(Message.raw("[" + timestamp + "] " + "Pressing ViewManage"));

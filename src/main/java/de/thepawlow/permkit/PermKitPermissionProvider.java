@@ -17,6 +17,8 @@ import java.util.*;
 public final class PermKitPermissionProvider extends BlockingDiskFile implements PermissionProvider {
     // Required to keep to prevent internal issues
     @Nonnull
+    public static final String OP_GROUP = "OP";
+    @Nonnull
     public static final String DEFAULT_GROUP = "Default";
     @Nonnull
     public static final Set<String> DEFAULT_GROUP_LIST = Set.of(PermKitPermissionProvider.DEFAULT_GROUP);
@@ -24,15 +26,9 @@ public final class PermKitPermissionProvider extends BlockingDiskFile implements
     public static final Map<String, Set<String>> DEFAULT_GROUPS = Map.ofEntries(
             Map.entry(PermKitPermissionProvider.OP_GROUP, Set.of()),
             Map.entry(PermKitPermissionProvider.DEFAULT_GROUP, Set.of()),
-            Map.entry("Visitor", Set.of("de.thepawlow.permkit.command.permkit.debug.status"))
+            Map.entry("PermKit", Set.of("de.thepawlow.permkit.command.permkit.*", PermKitPermissions.UI.BASE))
     );
 
-    // Required to keep to prevent internal issues
-    @Nonnull
-    public static final String OP_GROUP = "OP";
-
-    @Nonnull
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     @Nonnull
     public static final String PERMISSIONS_FILE_PATH = "permkit.json";
 
@@ -42,6 +38,9 @@ public final class PermKitPermissionProvider extends BlockingDiskFile implements
     private final Map<String, Set<String>> groupPermissions = new Object2ObjectOpenHashMap<>();
     @Nonnull
     private final Map<UUID, Set<String>> userGroups = new Object2ObjectOpenHashMap<>();
+
+    @Nonnull
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     public PermKitPermissionProvider() {
         super(Paths.get(PermKitPermissionProvider.PERMISSIONS_FILE_PATH));
