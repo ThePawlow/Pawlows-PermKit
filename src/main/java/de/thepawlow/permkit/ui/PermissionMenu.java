@@ -87,12 +87,33 @@ public class PermissionMenu extends InteractiveCustomUIPage<PermissionMenu.Bindi
 
         switch (data.action){
             case Actions.Manage:
+                if (!player.hasPermission(PermKitPermissions.UI.MANAGE))
+                {
+                    player.sendMessage(Message.raw("Cannot interact with ViewSettings right now."));
+                    sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
+                    return;
+                }
+
                 this.interactionManage(ref, store);
                 break;
             case Actions.Audit:
+                if (!player.hasPermission(PermKitPermissions.UI.AUDIT))
+                {
+                    player.sendMessage(Message.raw("Cannot interact with ViewSettings right now."));
+                    sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
+                    return;
+                }
+
                 this.interactionAudit(ref, store);
                 break;
             case Actions.Settings:
+                if (!player.hasPermission(PermKitPermissions.UI.SETTINGS))
+                {
+                    player.sendMessage(Message.raw("Cannot interact with ViewSettings right now."));
+                    sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
+                    return;
+                }
+
                 this.interactionSettings(ref, store);
                 break;
             default:
@@ -105,13 +126,6 @@ public class PermissionMenu extends InteractiveCustomUIPage<PermissionMenu.Bindi
         Player player = store.getComponent(ref, Player.getComponentType());
         assert player != null;
 
-        if (!player.hasPermission(PermKitPermissions.UI.SETTINGS))
-        {
-            player.sendMessage(Message.raw("Cannot interact with ViewSettings right now."));
-            sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
-            return;
-        }
-
         var timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         player.sendMessage(Message.raw("[" + timestamp + "] " + "Pressing ViewSettings"));
 
@@ -123,13 +137,6 @@ public class PermissionMenu extends InteractiveCustomUIPage<PermissionMenu.Bindi
         Player player = store.getComponent(ref, Player.getComponentType());
         assert player != null;
 
-        if (!player.hasPermission(PermKitPermissions.UI.AUDIT))
-        {
-            player.sendMessage(Message.raw("Cannot interact with ViewAudit right now."));
-            sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
-            return;
-        }
-
         var timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         player.sendMessage(Message.raw("[" + timestamp + "] " + "Pressing ViewAuditLog"));
         sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
@@ -138,13 +145,6 @@ public class PermissionMenu extends InteractiveCustomUIPage<PermissionMenu.Bindi
     private void interactionManage(Ref<EntityStore> ref, Store<EntityStore> store) {
         Player player = store.getComponent(ref, Player.getComponentType());
         assert player != null;
-
-        if (!player.hasPermission(PermKitPermissions.UI.MANAGE))
-        {
-            player.sendMessage(Message.raw("Cannot interact with ViewMange right now."));
-            sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
-            return;
-        }
 
         var timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         player.sendMessage(Message.raw("[" + timestamp + "] " + "Pressing ViewManage"));
