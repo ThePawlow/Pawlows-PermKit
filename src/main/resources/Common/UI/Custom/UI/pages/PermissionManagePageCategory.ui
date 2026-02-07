@@ -1,0 +1,41 @@
+$G = "../Generics.ui";
+
+// Manage - Page | Overview
+Group #PageManageContentOverview {
+  Group #Header {
+    LayoutMode: Left;
+
+    Group #TitleGroup {
+      LayoutMode: Left;
+
+      Group #IconWrench {
+        LayoutMode: Middle;
+        Anchor: (Width: 32, Height: 32);
+        Background: (TexturePath: "../assets/Icon_Wrenchx64.png");
+      }
+
+      $G.@GNTitleLabel #TitleLabel {
+        Text: %ui.permissionmenu.main.actions.manage.text;
+        Padding: (Left: 5);
+      }
+    }
+
+    $G.@GNSubtitleLabel #Subtitle {
+      Text: %ui.permissionmenu.manage.actions.category.text;
+      Padding: (Top: 5, Left: 15);
+    }
+  }
+
+  Group #DynamicEntryList {
+    LayoutMode: TopScrolling;
+    Padding: (Top: 10);
+    ScrollbarStyle: (
+      Spacing: 6,
+      Size: 6,
+      Background: (Color: #989898(0.7)),
+      Handle: (Color: #0a1119(0.5)),
+      HoveredHandle: (Color: #0a1119(0.8)),
+      DraggedHandle: (Color: #0a1119(0.6)),
+    );
+  }
+}

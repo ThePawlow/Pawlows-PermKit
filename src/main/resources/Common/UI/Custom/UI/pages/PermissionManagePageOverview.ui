@@ -1,0 +1,86 @@
+$G = "../Generics.ui";
+
+// Manage - Page | Overview
+Group #PageManageContentOverview {
+  LayoutMode: Top;
+
+  Group #Header {
+    LayoutMode: Left;
+
+    Group #TitleGroup {
+      LayoutMode: Left;
+
+      Group #IconWrench {
+        LayoutMode: Middle;
+        Anchor: (Width: 32, Height: 32);
+        Background: (TexturePath: "../assets/Icon_OpenBookx64.png");
+      }
+
+      $G.@GNTitleLabel #TitleLabel {
+        Text: %ui.permissionmenu.main.actions.manage.text;
+        Padding: (Left: 5);
+      }
+    }
+
+    $G.@GNSubtitleLabel #Subtitle {
+      Text: %ui.permissionmenu.manage.title;
+      Padding: (Top: 5, Left: 15);
+    }
+  }
+
+  Group #InstructionDisclaimer {
+    LayoutMode: Top;
+    Padding: (Top: 15);
+
+    Label {
+      Text: "Nothing but us chickens";
+      Style: (
+        FontSize: 24,
+        TextColor: #d8d8d8,
+        RenderBold: true,
+        RenderUppercase: true,
+        FontName: "Secondary"
+      );
+    }
+
+    Label {
+      Text: "Choose how you would like to browse Permissions";
+      Style: (FontSize: 20, TextColor: #989898, RenderBold: true, RenderUppercase: true);
+    }
+  }
+
+  Group #InstructionBrowseByCategory {
+    LayoutMode: Top;
+    Padding: (Top: 10);
+
+    $G.@GNTitleLabel #TitleLabel {
+      Text: "Category";
+    }
+
+    $G.@GNSubtitleLabel #Subtitle {
+      Text: "Browse Permission based on their Category.
+- hytale
+  + buildertools
+  + editor
+  + op
+";
+    }
+  }
+
+  Group #InstructionBrowseByPermission {
+    LayoutMode: Top;
+    Padding: (Top: 10);
+
+    $G.@GNTitleLabel #TitleLabel {
+      Text: "Permission";
+    }
+
+    $G.@GNSubtitleLabel #Subtitle {
+      Text: "Browse Permission based on their ID-string.
+- hytale.buildertools.*
+- hytale.editor.*
+- hytale.op.*
+";
+    }
+  }
+}

@@ -16,7 +16,6 @@ import com.hypixel.hytale.server.core.ui.builder.UICommandBuilder;
 import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder;
 import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
-import de.thepawlow.permkit.PermKitPermissions;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 import javax.annotation.Nonnull;
@@ -25,23 +24,28 @@ import java.util.Date;
 
 public class PermissionManagePage extends InteractiveCustomUIPage<PermissionManagePage.BindingData> {
     //region Construction
-    public enum Actions {
-        Save,
-        Discard
+    public enum Views {
+        Overview,
+        Category,
+        Permissions
     }
 
-    private static FunctionCodec<String, Actions> ActionCodec = new FunctionCodec<>(
+    public Views CurrentView = Views.Overview;
+
+    public String SelectorDynamicContent = "#DynamicContent";
+
+    private static FunctionCodec<String, Views> ViewCodec = new FunctionCodec<>(
             Codec.STRING,
-            Actions::valueOf,
+            Views::valueOf,
             Enum::name
     );
 
     public static class BindingData {
-        public Actions action;
+        public Views action;
 
         public static final BuilderCodec<BindingData> CODEC = BuilderCodec.builder(BindingData.class, BindingData::new)
-                .append(new KeyedCodec<>("Action", ActionCodec),
-                        (BindingData o, Actions v) -> o.action = v,
+                .append(new KeyedCodec<>("Action", ViewCodec),
+                        (BindingData o, Views v) -> o.action = v,
                         (BindingData o) -> o.action)
                 .add()
                 .build();
@@ -54,23 +58,29 @@ public class PermissionManagePage extends InteractiveCustomUIPage<PermissionMana
     @Override
     public void build(@Nonnull Ref<EntityStore> ref, @Nonnull UICommandBuilder uiCommandBuilder, @Nonnull UIEventBuilder uiEventBuilder, @Nonnull Store<EntityStore> store) {
         uiCommandBuilder.append("UI/PermissionManagePage.ui");
-        
-//        uiEventBuilder.addEventBinding(
-//            CustomUIEventBindingType.Activating,
-//            "#ButtonSave",
-//            new EventData().append("Action", Actions.Save)
-//        );
-//
-//        uiEventBuilder.addEventBinding(
-//            CustomUIEventBindingType.Activating,
-//            "#ButtonDiscard",
-//            new EventData().append("Action", Actions.Discard)
-//        );
-        var dynamicEntryList = "#DynamicEntryList";
-        uiCommandBuilder.clear(dynamicEntryList);
-        for (int i = 0; i < 20; i++) {
-            uiCommandBuilder.append(dynamicEntryList, "UI/dynamic/EntryItem.ui");
-        }
+
+        System.out.println("CurrentView.name()");
+        System.out.println(CurrentView.name());
+
+        uiEventBuilder.addEventBinding(
+                CustomUIEventBindingType.Activating,
+                "#ButtonCategory",
+                new EventData().append("Action", Views.Category)
+        );
+
+        uiEventBuilder.addEventBinding(
+                CustomUIEventBindingType.Activating,
+                "#ButtonPermissions",
+                new EventData().append("Action", Views.Permissions)
+        );
+
+        buildDynamicPage(uiCommandBuilder);
+
+//        var dynamicEntryList = "#DynamicEntryList";
+//        uiCommandBuilder.clear(dynamicEntryList);
+//        for (int i = 0; i < 20; i++) {
+//            uiCommandBuilder.append(dynamicEntryList, "UI/dynamic/EntryItem.ui");
+//        }
     }
     //endregion
 
@@ -81,11 +91,11 @@ public class PermissionManagePage extends InteractiveCustomUIPage<PermissionMana
         assert player != null;
 
         switch (data.action){
-            case Actions.Save:
-                this.interactionSave(ref, store);
+            case Views.Category:
+                this.interactionBrowseByCategory(ref, store);
                 break;
-            case Actions.Discard:
-                this.interactionDiscard(ref, store);
+            case Views.Permissions:
+                this.interactionBrowseByPermissions(ref, store);
                 break;
             default:
                 player.sendMessage(Message.raw("Pressed invalid Action"));
@@ -93,25 +103,53 @@ public class PermissionManagePage extends InteractiveCustomUIPage<PermissionMana
         }
     }
 
-    private void interactionDiscard(Ref<EntityStore> ref, Store<EntityStore> store) {
-        Player player = store.getComponent(ref, Player.getComponentType());
-        assert player != null;
+    private void buildDynamicPage(UICommandBuilder uiCommandBuilder) {
+        uiCommandBuilder.clear(this.SelectorDynamicContent);
 
-        var timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        player.sendMessage(Message.raw("[" + timestamp + "] " + "Pressing Discard"));
+        var documentPath = "UI/pages/PermissionManagePage";
+        switch (CurrentView) {
+            case Category:
+                documentPath += "Category.ui";
+                break;
+            case Overview:
+                documentPath += "Overview.ui";
+                break;
+            case Permissions:
+                documentPath += "Permissions.ui";
+                break;
+            default:
+                break;
+        }
 
-        player.getPageManager().openCustomPage(ref, store, new PermissionMenu(playerRef));
-        sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
+        uiCommandBuilder.append(this.SelectorDynamicContent, documentPath);
     }
 
-    private void interactionSave(Ref<EntityStore> ref, Store<EntityStore> store) {
+    private void interactionBrowseByPermissions(Ref<EntityStore> ref, Store<EntityStore> store) {
         Player player = store.getComponent(ref, Player.getComponentType());
         assert player != null;
 
         var timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-        player.sendMessage(Message.raw("[" + timestamp + "] " + "Pressing Save"));
+        player.sendMessage(Message.raw("[" + timestamp + "] " + "Pressing BrowseByPermissions"));
 
-        sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
+        this.CurrentView = Views.Permissions;
+        var uiCommandBuilder = new UICommandBuilder();
+        buildDynamicPage(uiCommandBuilder);
+
+        sendUpdate(uiCommandBuilder, new UIEventBuilder(), false);
+    }
+
+    private void interactionBrowseByCategory(Ref<EntityStore> ref, Store<EntityStore> store) {
+        Player player = store.getComponent(ref, Player.getComponentType());
+        assert player != null;
+
+        var timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        player.sendMessage(Message.raw("[" + timestamp + "] " + "Pressing BrowseByCategory"));
+
+        this.CurrentView = Views.Category;
+        var uiCommandBuilder = new UICommandBuilder();
+        buildDynamicPage(uiCommandBuilder);
+
+        sendUpdate(uiCommandBuilder, new UIEventBuilder(), false);
     }
     //endregion
 }

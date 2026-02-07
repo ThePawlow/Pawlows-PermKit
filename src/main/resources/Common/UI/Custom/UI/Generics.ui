@@ -1,5 +1,55 @@
 $S = "../Sounds.ui";
 
+// Styling
+@GNButtonStyleHappy = TextButtonStyle(
+  Default: (
+    Background: (TexturePath: "assets/BackgroundHappyRoundedWBorderx64.png", Border: 10),
+    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+  ),
+  Hovered: (
+    Background: (TexturePath: "assets/BackgroundHappyRoundedWBorder_Hoveredx64.png", Border: 10),
+    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+  ),
+  Pressed: (
+    Background: (TexturePath: "assets/BackgroundHappyRoundedWBorder_Pressedx64.png", Border: 10),
+    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+  ),
+  Sounds: $S.@ButtonsLight,
+);
+
+@GNButtonStyleSad = TextButtonStyle(
+  Default: (
+    Background: (TexturePath: "assets/BackgroundSadRoundedWBorderx64.png", Border: 10),
+    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+  ),
+  Hovered: (
+    Background: (TexturePath: "assets/BackgroundSadRoundedWBorder_Hoveredx64.png", Border: 10),
+    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+  ),
+  Pressed: (
+    Background: (TexturePath: "assets/BackgroundSadRoundedWBorder_Pressedx64.png", Border: 10),
+    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+  ),
+  Sounds: $S.@ButtonsCancel,
+);
+
+@GNButtonStylePrimary = TextButtonStyle(
+  Default: (
+    Background: (TexturePath: "assets/Primary_x64.png"),
+    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+  ),
+  Hovered: (
+    Background: (TexturePath: "assets/Primary_Hovered_x64.png"),
+    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+  ),
+  Pressed: (
+    Background: (TexturePath: "assets/Primary_Pressed_x64.png"),
+    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
+  ),
+  Sounds: $S.@ButtonsCancel,
+);
+
+// Elements
 @GNOverlayDarkend = Group {
   Background: #000000(0.45);
 };
@@ -68,59 +118,27 @@ $S = "../Sounds.ui";
   Anchor: (Width: 10);
 };
 
-@GNButtonStyleHappy = TextButtonStyle(
-  Default: (
-    Background: (TexturePath: "assets/BackgroundHappyRoundedWBorderx64.png", Border: 10),
-    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-  ),
-  Hovered: (
-    Background: (TexturePath: "assets/BackgroundHappyRoundedWBorder_Hoveredx64.png", Border: 10),
-    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-  ),
-  Pressed: (
-    Background: (TexturePath: "assets/BackgroundHappyRoundedWBorder_Pressedx64.png", Border: 10),
-    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-  ),
-  Sounds: $S.@ButtonsLight,
-);
-
-@GNButtonStyleSad = TextButtonStyle(
-  Default: (
-    Background: (TexturePath: "assets/BackgroundSadRoundedWBorderx64.png", Border: 10),
-    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-  ),
-  Hovered: (
-    Background: (TexturePath: "assets/BackgroundSadRoundedWBorder_Hoveredx64.png", Border: 10),
-    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-  ),
-  Pressed: (
-    Background: (TexturePath: "assets/BackgroundSadRoundedWBorder_Pressedx64.png", Border: 10),
-    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-  ),
-  Sounds: $S.@ButtonsCancel,
-);
-
-@GNButtonStylePrimary = TextButtonStyle(
-  Default: (
-    Background: (TexturePath: "assets/Primary_x64.png"),
-    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-  ),
-  Hovered: (
-    Background: (TexturePath: "assets/Primary_Hovered_x64.png"),
-    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: true, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-  ),
-  Pressed: (
-    Background: (TexturePath: "assets/Primary_Pressed_x64.png"),
-    LabelStyle: (FontSize: 14, TextColor: #fefefe, RenderBold: false, RenderUppercase: true, HorizontalAlignment: Center, VerticalAlignment: Center),
-  ),
-  Sounds: $S.@ButtonsCancel,
-);
-
 @GNTextButtonPrimary = TextButton {
   Padding: (Horizontal: 21, Vertical: 6);
   Anchor: (Height: 44);
   Style: @GNButtonStylePrimary;
   Text: @text;
+};
+
+@GNTitleLabel = Label {
+  Text: @text;
+  Style: (
+    FontSize: 18,
+    TextColor: #d8d8d8,
+    RenderBold: true,
+    RenderUppercase: true,
+    FontName: "Secondary"
+  );
+};
+
+@GNSubtitleLabel = Label {
+  Text: @text;
+  Style: (FontSize: 12, TextColor: #989898, RenderBold: true, RenderUppercase: true);
 };
 
 @GNTextButtonSad = TextButton {

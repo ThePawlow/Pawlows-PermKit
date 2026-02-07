@@ -1,0 +1,32 @@
+$G = "../Generics.ui";
+
+// Manage - Page | Overview
+Group #PageManageContentOverview {
+  Group #Header {
+    LayoutMode: Left;
+
+    Group #TitleGroup {
+      LayoutMode: Left;
+
+      Group #IconWrench {
+        LayoutMode: Middle;
+        Anchor: (Width: 32, Height: 32);
+        Background: (TexturePath: "../assets/Icon_Wrenchx64.png");
+      }
+
+      $G.@GNTitleLabel #TitleLabel {
+        Text: %ui.permissionmenu.main.actions.manage.text;
+        Padding: (Left: 5);
+      }
+    }
+
+    $G.@GNSubtitleLabel #Subtitle {
+      Text: %ui.permissionmenu.manage.actions.category.text;
+      Padding: (Top: 5, Left: 15);
+    }
+  }
+
+  $G.@GNTitleLabel #TitleLabel {
+    Text: "Permissions Miamor";
+  }
+}
