@@ -1,9 +1,10 @@
 package de.thepawlow.permkit;
 
 import com.hypixel.hytale.logger.HytaleLogger;
+import com.hypixel.hytale.server.core.permissions.PermissionsModule;
 import com.hypixel.hytale.server.core.plugin.JavaPlugin;
 import com.hypixel.hytale.server.core.plugin.JavaPluginInit;
-import de.thepawlow.permkit.commands.PermissionMenuCommand;
+import de.thepawlow.permkit.commands.PermissionMenuCommands;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
 import java.util.logging.Level;
@@ -20,7 +21,15 @@ public class PermKitPlugin extends JavaPlugin {
 
     @Override
     protected void setup() {
-        this.getCommandRegistry().registerCommand(new PermissionMenuCommand());
+        // Getting rid of OG. HytalePermissionProvider
+        // Replacing it with our integration
+        PermissionsModule.get().removeProvider(PermissionsModule.get().getFirstPermissionProvider());
+        var permkitProvider = new PermKitPermissionProvider();
+        permkitProvider.syncLoad();
+        PermissionsModule.get().addProvider(permkitProvider);
+
+        // Registering our commands afterwards.
+        this.getCommandRegistry().registerCommand(new PermissionMenuCommands());
     }
 
     @Override
