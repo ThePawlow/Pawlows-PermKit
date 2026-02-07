@@ -33,7 +33,7 @@ Group #PageManageContentOverview {
     Padding: (Top: 15);
 
     Label {
-      Text: "Nothing but us chickens";
+      Text: %ui.permissionmenu.manage.page.overview.title;
       Style: (
         FontSize: 24,
         TextColor: #d8d8d8,
@@ -44,7 +44,7 @@ Group #PageManageContentOverview {
     }
 
     Label {
-      Text: "Choose how you would like to browse Permissions";
+      Text: %ui.permissionmenu.manage.page.overview.subtitle;
       Style: (FontSize: 20, TextColor: #989898, RenderBold: true, RenderUppercase: true);
     }
   }
@@ -54,7 +54,7 @@ Group #PageManageContentOverview {
     Padding: (Top: 10);
 
     $G.@GNTitleLabel #TitleLabel {
-      Text: "Category";
+      Text: %ui.permissionmenu.manage.actions.category.text;
     }
 
     $G.@GNSubtitleLabel #Subtitle {

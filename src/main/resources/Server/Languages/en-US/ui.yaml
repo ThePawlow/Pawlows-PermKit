@@ -1,0 +1,36 @@
+permissionmenu:
+    title: Pawlow's PermKit
+    slogan: Decide how things are handled!
+    main:
+        actions:
+            manage:
+                text: Manage
+            audit:
+                text: Audit
+            settings:
+                text: Settings
+    settings:
+        actions:
+            save:
+                text: Save
+            discard:
+                text: Discard
+            auditlogs:
+                text: Use Audit Logs
+                usage: Activating this allows the recording of actions
+            op:
+                text: Use Audit Logs
+                usage: Activating this allows the recording of actions
+    manage:
+        title: Overview
+        actions:
+            category:
+                text: Category
+            permissions:
+                text: Permissions
+        page:
+            overview:
+                title: Nothing but us chickens
+                subtitle: Choose how you would like to browse your Permissions
+            permissions:
+                title: "Permissions"
