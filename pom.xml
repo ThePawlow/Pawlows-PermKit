@@ -34,7 +34,7 @@
             <artifactId>Server</artifactId>
             <!-- Replace with latest version, we provide jars for the last five releases -->
             <!-- Source https://maven.hytale.com/pre-release/com/hypixel/hytale/Server/maven-metadata.xml -->
-            <version>2026.01.28-87d03be09</version>
+            <version>2026.02.06-0baf7c5aa</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
