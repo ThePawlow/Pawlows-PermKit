@@ -18,9 +18,6 @@ permissionmenu:
             auditlogs:
                 text: Use Audit Logs
                 usage: Activating this allows the recording of actions
-            op:
-                text: Use Audit Logs
-                usage: Activating this allows the recording of actions
     manage:
         title: Overview
         actions:
