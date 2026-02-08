@@ -1,11 +1,11 @@
-$S = "../Sounds.ui";
-$G = "Generics.ui";
+$S = "../../Sounds.ui";
+$G = "../Generics.ui";
 
 $G.@GNOverlayDarkend {}
 
 Group #PermissionSettingsPage {
   Anchor: (Width: 400, Height: 300);
-  Background: (TexturePath: "assets/BackgroundRoundedWBorderx64.png", Border: 10);
+  Background: (TexturePath: "../assets/BackgroundRoundedWBorderx64.png", Border: 10);
   Padding: (Vertical: 10, Horizontal: 20);
 
   Group {
@@ -22,7 +22,7 @@ Group #PermissionSettingsPage {
         Group #IconWrench {
           LayoutMode: Middle;
           Anchor: (Width: 32, Height: 32);
-          Background: (TexturePath: "assets/Icon_Wrenchx64.png");
+          Background: (TexturePath: "../assets/Icon_Wrenchx64.png");
         }
 
         Label #TitleLabel {

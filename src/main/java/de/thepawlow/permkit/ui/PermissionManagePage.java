@@ -36,7 +36,7 @@ public class PermissionManagePage extends InteractiveCustomUIPage<PermissionMana
         }
 
         public String getDocumentPath() {
-            return "UI/pages/PermissionManagePage" + uiFileName;
+            return "UI/manage/pages/" + uiFileName;
         }
     }
 
@@ -67,10 +67,7 @@ public class PermissionManagePage extends InteractiveCustomUIPage<PermissionMana
 
     @Override
     public void build(@Nonnull Ref<EntityStore> ref, @Nonnull UICommandBuilder uiCommandBuilder, @Nonnull UIEventBuilder uiEventBuilder, @Nonnull Store<EntityStore> store) {
-        uiCommandBuilder.append("UI/PermissionManagePage.ui");
-
-        System.out.println("CurrentView.name()");
-        System.out.println(CurrentView.name());
+        uiCommandBuilder.append("UI/manage/Page.ui");
 
         uiEventBuilder.addEventBinding(
                 CustomUIEventBindingType.Activating,
@@ -85,12 +82,6 @@ public class PermissionManagePage extends InteractiveCustomUIPage<PermissionMana
         );
 
         buildDynamicPage(uiCommandBuilder);
-
-//        var dynamicEntryList = "#DynamicEntryList";
-//        uiCommandBuilder.clear(dynamicEntryList);
-//        for (int i = 0; i < 20; i++) {
-//            uiCommandBuilder.append(dynamicEntryList, "UI/dynamic/EntryItem.ui");
-//        }
     }
     //endregion
 
@@ -129,6 +120,16 @@ public class PermissionManagePage extends InteractiveCustomUIPage<PermissionMana
         this.CurrentView = view;
         var uiCommandBuilder = new UICommandBuilder();
         buildDynamicPage(uiCommandBuilder);
+
+        switch (view){
+            case Views.Category:
+                var dynamicEntryList = "#DynamicEntryList";
+                    uiCommandBuilder.clear(dynamicEntryList);
+                    for (int i = 0; i < 20; i++) {
+                    uiCommandBuilder.append(dynamicEntryList, "UI/manage/dynamic/EntryItem.ui");
+                }
+                break;
+        }
 
         sendUpdate(uiCommandBuilder, new UIEventBuilder(), false);
     }

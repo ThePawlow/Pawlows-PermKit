@@ -53,7 +53,7 @@ public class PermissionSettingsPage extends InteractiveCustomUIPage<PermissionSe
 
     @Override
     public void build(@Nonnull Ref<EntityStore> ref, @Nonnull UICommandBuilder uiCommandBuilder, @Nonnull UIEventBuilder uiEventBuilder, @Nonnull Store<EntityStore> store) {
-        uiCommandBuilder.append("UI/PermissionSettingsPage.ui");
+        uiCommandBuilder.append("UI/settings/Page.ui");
         
         uiEventBuilder.addEventBinding(
             CustomUIEventBindingType.Activating,

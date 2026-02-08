@@ -21,7 +21,7 @@ Group #EntryItem {
 
     Group #IconArrow {
       Anchor: (Width: 16, Height: 16);
-      Background: (TexturePath: "../assets/ArrowRight@16.png");
+      Background: (TexturePath: "../../assets/ArrowRight@16.png");
     }
   }
 

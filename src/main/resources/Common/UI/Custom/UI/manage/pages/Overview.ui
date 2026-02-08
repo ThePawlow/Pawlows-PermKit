@@ -1,4 +1,4 @@
-$G = "../Generics.ui";
+$G = "../../Generics.ui";
 
 // Manage - Page | Overview
 Group #PageManageContentOverview {
@@ -13,7 +13,7 @@ Group #PageManageContentOverview {
       Group #IconWrench {
         LayoutMode: Middle;
         Anchor: (Width: 32, Height: 32);
-        Background: (TexturePath: "../assets/Icon_OpenBookx64.png");
+        Background: (TexturePath: "../../assets/Icon_OpenBookx64.png");
       }
 
       $G.@GNTitleLabel #TitleLabel {
