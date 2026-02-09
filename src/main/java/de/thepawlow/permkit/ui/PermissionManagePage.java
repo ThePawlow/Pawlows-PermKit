@@ -26,6 +26,7 @@ public class PermissionManagePage extends InteractiveCustomUIPage<PermissionMana
     //region Construction
     public enum Views {
         Overview("Overview.ui"),
+        Discard("Overview.ui"),
         Category("Category.ui"),
         Permissions("Permissions.ui");
 
@@ -81,6 +82,12 @@ public class PermissionManagePage extends InteractiveCustomUIPage<PermissionMana
                 new EventData().append("Action", Views.Permissions)
         );
 
+        uiEventBuilder.addEventBinding(
+                CustomUIEventBindingType.Activating,
+                "#ButtonPermissions",
+                new EventData().append("Action", Views.Discard)
+        );
+
         buildDynamicPage(uiCommandBuilder);
     }
     //endregion
@@ -98,10 +105,21 @@ public class PermissionManagePage extends InteractiveCustomUIPage<PermissionMana
             case Views.Permissions:
                 this.interactionBrowseByPermissions(ref, store);
                 break;
+            case Discard:
+                this.interactionDiscard(ref, store);
+                break;
             default:
                 player.sendMessage(Message.raw("Pressed invalid Action"));
                 break;
         }
+    }
+
+    private void interactionDiscard(Ref<EntityStore> ref, Store<EntityStore> store) {
+        Player player = store.getComponent(ref, Player.getComponentType());
+        assert player != null;
+
+        player.getPageManager().openCustomPage(ref, store, new PermissionMenu(playerRef));
+        sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
     }
 
     private void buildDynamicPage(UICommandBuilder uiCommandBuilder) {

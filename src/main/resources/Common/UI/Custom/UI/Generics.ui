@@ -1,6 +1,8 @@
 $S = "../Sounds.ui";
 
 // Styling
+@GNBackgroundColor = #0A0A0A(0.6);
+
 @GNButtonStyleHappy = TextButtonStyle(
   Default: (
     Background: (TexturePath: "assets/BackgroundHappyRoundedWBorderx64.png", Border: 10),

@@ -25,16 +25,9 @@ Group #PermissionSettingsPage {
           Background: (TexturePath: "../assets/Icon_Wrenchx64.png");
         }
 
-        Label #TitleLabel {
+        $G.@GNTitleLabel #TitleLabel {
           Text: %ui.permissionmenu.main.actions.settings.text;
           Padding: (Left: 5);
-          Style: (
-            FontSize: 18,
-            TextColor: #d8d8d8,
-            RenderBold: true,
-            RenderUppercase: true,
-            FontName: "Secondary"
-          );
         }
       }
 
@@ -52,13 +45,6 @@ Group #PermissionSettingsPage {
       $G.@GNCheckBoxWithLabelAndSublabel #CheckboxUseAuditLogs {
         @TextTitle = %ui.permissionmenu.settings.actions.auditlogs.text;
         @TextSubtitle = %ui.permissionmenu.settings.actions.auditlogs.usage;
-      }
-
-      $G.@GNHorizontalSpacer {}
-
-      $G.@GNCheckBoxWithLabelAndSublabel #CheckboxAllowOP {
-        @TextTitle = %ui.permissionmenu.settings.actions.op.text;
-        @TextSubtitle = %ui.permissionmenu.settings.actions.op.usage;
       }
     }
   }

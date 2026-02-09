@@ -13,19 +13,23 @@ Group #PermissionManageMainPage {
     Padding: (Bottom: 10);
     Anchor: (Top: 10, Bottom: 10);
 
-    // Load by Code - PermissionManagePageOverview
+    // Loaded by code
     Group #DynamicContent {}
   }
 }
 
 Group #PermissionManageOverviewPage {
   LayoutMode: CenterMiddle;
-  Anchor: (Top: 20, Width: 200, Height: 200);
-  Background: (TexturePath: "../assets/BackgroundRoundedWBorderx64.png", Border: 10);
+  Anchor: (Left: 30, Width: 200);
+  Background: $G.@GNBackgroundColor;
   Padding: (Vertical: 10, Horizontal: 20);
 
   Group {
     LayoutMode: Top;
+
+    $G.@GNTitleLabel #TitleLabel {
+      Text: %ui.permissionmenu.title;
+    }
 
     Group #TitleGroup {
       LayoutMode: Left;
@@ -60,6 +64,13 @@ Group #PermissionManageOverviewPage {
 
     $G.@GNTextButtonPrimary #ButtonPermissions {
       Text: %ui.permissionmenu.manage.actions.permissions.text;
+    }
+
+    $G.@GNHorizontalSpacer {}
+    $G.@GNHorizontalSpacer {}
+
+    $G.@GNTextButtonSad #ButtonDiscard {
+      Text: %ui.permissionmenu.settings.actions.discard.text;
     }
   }
 }

@@ -20,15 +20,9 @@ Group #PermissionSettingsPage {
       Group #TitleGroup {
         LayoutMode: Center;
 
-        Label #TitleLabel {
+        $G.@GNTitleLabel #TitleLabel {
           Text: %ui.permissionmenu.title;
           Padding: (Left: 5);
-          Style: (FontSize: 18,
-            TextColor: #d8d8d8,
-            RenderBold: true,
-            RenderUppercase: true,
-            FontName: "Secondary"
-          );
         }
       }
 
