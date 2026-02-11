@@ -1,6 +1,5 @@
 $G = "../../Generics.ui";
 
-// Manage - Page | Overview
 Group #PageManageContentOverview {
   LayoutMode: Top;
 

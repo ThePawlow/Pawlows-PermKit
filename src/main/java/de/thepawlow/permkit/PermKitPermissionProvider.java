@@ -6,43 +6,62 @@ import com.google.gson.stream.JsonWriter;
 import com.hypixel.hytale.server.core.permissions.provider.PermissionProvider;
 import com.hypixel.hytale.server.core.util.io.BlockingDiskFile;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
-
-import javax.annotation.Nonnull;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.*;
+import javax.annotation.Nonnull;
 
-public final class PermKitPermissionProvider extends BlockingDiskFile implements PermissionProvider {
+public final class PermKitPermissionProvider
+    extends BlockingDiskFile
+    implements PermissionProvider
+{
+
     // Required to keep to prevent internal issues
     @Nonnull
     public static final String OP_GROUP = "OP";
+
     @Nonnull
     public static final String DEFAULT_GROUP = "Default";
+
     @Nonnull
     public static final String GROUP = "PermKit";
+
     @Nonnull
-    public static final Set<String> DEFAULT_GROUP_LIST = Set.of(PermKitPermissionProvider.DEFAULT_GROUP);
+    public static final Set<String> DEFAULT_GROUP_LIST = Set.of(
+        PermKitPermissionProvider.DEFAULT_GROUP
+    );
+
     @Nonnull
     public static final Map<String, Set<String>> DEFAULT_GROUPS = Map.ofEntries(
-            Map.entry(PermKitPermissionProvider.OP_GROUP, Set.of()),
-            Map.entry(PermKitPermissionProvider.DEFAULT_GROUP, Set.of()),
-            Map.entry(PermKitPermissionProvider.GROUP, Set.of("de.thepawlow.permkit.command.permkit.*", PermKitPermissions.UI.ANY))
+        Map.entry(PermKitPermissionProvider.OP_GROUP, Set.of()),
+        Map.entry(PermKitPermissionProvider.DEFAULT_GROUP, Set.of()),
+        Map.entry(
+            PermKitPermissionProvider.GROUP,
+            Set.of("de.thepawlow.permkit.command.permkit.*", Permissions.UI.ANY)
+        )
     );
 
     @Nonnull
     public static final String PERMISSIONS_FILE_PATH = "permkit.json";
 
     @Nonnull
-    private final Map<UUID, Set<String>> userPermissions = new Object2ObjectOpenHashMap<>();
-    @Nonnull
-    private final Map<String, Set<String>> groupPermissions = new Object2ObjectOpenHashMap<>();
-    @Nonnull
-    private final Map<UUID, Set<String>> userGroups = new Object2ObjectOpenHashMap<>();
+    private final Map<UUID, Set<String>> userPermissions =
+        new Object2ObjectOpenHashMap<>();
 
     @Nonnull
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    private final Map<String, Set<String>> groupPermissions =
+        new Object2ObjectOpenHashMap<>();
+
+    @Nonnull
+    private final Map<UUID, Set<String>> userGroups =
+        new Object2ObjectOpenHashMap<>();
+
+    @Nonnull
+    private static final Gson GSON = new GsonBuilder()
+        .setPrettyPrinting()
+        .create();
 
     public PermKitPermissionProvider() {
         super(Paths.get(PermKitPermissionProvider.PERMISSIONS_FILE_PATH));
@@ -55,11 +74,16 @@ public final class PermKitPermissionProvider extends BlockingDiskFile implements
     }
 
     @Override
-    public void addUserPermissions(@Nonnull UUID uuid, @Nonnull Set<String> permissions) {
+    public void addUserPermissions(
+        @Nonnull UUID uuid,
+        @Nonnull Set<String> permissions
+    ) {
         this.fileLock.writeLock().lock();
 
         try {
-            Set<String> set = this.userPermissions.computeIfAbsent(uuid, k -> new HashSet<>());
+            Set<String> set = this.userPermissions.computeIfAbsent(uuid, k ->
+                new HashSet<>()
+            );
             if (set.addAll(permissions)) {
                 this.syncSave();
             }
@@ -69,7 +93,10 @@ public final class PermKitPermissionProvider extends BlockingDiskFile implements
     }
 
     @Override
-    public void removeUserPermissions(@Nonnull UUID uuid, @Nonnull Set<String> permissions) {
+    public void removeUserPermissions(
+        @Nonnull UUID uuid,
+        @Nonnull Set<String> permissions
+    ) {
         this.fileLock.writeLock().lock();
 
         try {
@@ -110,11 +137,16 @@ public final class PermKitPermissionProvider extends BlockingDiskFile implements
     }
 
     @Override
-    public void addGroupPermissions(@Nonnull String group, @Nonnull Set<String> permissions) {
+    public void addGroupPermissions(
+        @Nonnull String group,
+        @Nonnull Set<String> permissions
+    ) {
         this.fileLock.writeLock().lock();
 
         try {
-            Set<String> set = this.groupPermissions.computeIfAbsent(group, k -> new HashSet<>());
+            Set<String> set = this.groupPermissions.computeIfAbsent(group, k ->
+                new HashSet<>()
+            );
             if (set.addAll(permissions)) {
                 this.syncSave();
             }
@@ -124,7 +156,10 @@ public final class PermKitPermissionProvider extends BlockingDiskFile implements
     }
 
     @Override
-    public void removeGroupPermissions(@Nonnull String group, @Nonnull Set<String> permissions) {
+    public void removeGroupPermissions(
+        @Nonnull String group,
+        @Nonnull Set<String> permissions
+    ) {
         this.fileLock.writeLock().lock();
 
         try {
@@ -169,7 +204,9 @@ public final class PermKitPermissionProvider extends BlockingDiskFile implements
         this.fileLock.writeLock().lock();
 
         try {
-            Set<String> list = this.userGroups.computeIfAbsent(uuid, k -> new HashSet<>());
+            Set<String> list = this.userGroups.computeIfAbsent(uuid, k ->
+                new HashSet<>()
+            );
             if (list.add(group)) {
                 this.syncSave();
             }
@@ -222,7 +259,9 @@ public final class PermKitPermissionProvider extends BlockingDiskFile implements
     @Override
     protected void read(@Nonnull BufferedReader fileReader) throws IOException {
         try (JsonReader jsonReader = new JsonReader(fileReader)) {
-            JsonObject root = JsonParser.parseReader(jsonReader).getAsJsonObject();
+            JsonObject root = JsonParser.parseReader(
+                jsonReader
+            ).getAsJsonObject();
             this.userPermissions.clear();
             this.groupPermissions.clear();
             this.userGroups.clear();
@@ -235,13 +274,17 @@ public final class PermKitPermissionProvider extends BlockingDiskFile implements
                     if (user.has("permissions")) {
                         Set<String> set = new HashSet<>();
                         this.userPermissions.put(uuid, set);
-                        user.getAsJsonArray("permissions").forEach(e -> set.add(e.getAsString()));
+                        user
+                            .getAsJsonArray("permissions")
+                            .forEach(e -> set.add(e.getAsString()));
                     }
 
                     if (user.has("groups")) {
                         Set<String> list = new HashSet<>();
                         this.userGroups.put(uuid, list);
-                        user.getAsJsonArray("groups").forEach(e -> list.add(e.getAsString()));
+                        user
+                            .getAsJsonArray("groups")
+                            .forEach(e -> list.add(e.getAsString()));
                     }
                 }
             }
@@ -252,22 +295,35 @@ public final class PermKitPermissionProvider extends BlockingDiskFile implements
                 for (Map.Entry<String, JsonElement> entry : groups.entrySet()) {
                     Set<String> set = new HashSet<>();
                     this.groupPermissions.put(entry.getKey(), set);
-                    entry.getValue().getAsJsonArray().forEach(e -> set.add(e.getAsString()));
+                    entry
+                        .getValue()
+                        .getAsJsonArray()
+                        .forEach(e -> set.add(e.getAsString()));
                 }
             }
 
-            for (Map.Entry<String, Set<String>> entry : DEFAULT_GROUPS.entrySet()) {
-                this.groupPermissions.put(entry.getKey(), new HashSet<>(entry.getValue()));
+            for (Map.Entry<
+                String,
+                Set<String>
+            > entry : DEFAULT_GROUPS.entrySet()) {
+                this.groupPermissions.put(
+                    entry.getKey(),
+                    new HashSet<>(entry.getValue())
+                );
             }
         }
     }
 
     @Override
-    protected void write(@Nonnull BufferedWriter fileWriter) throws IOException {
+    protected void write(@Nonnull BufferedWriter fileWriter)
+        throws IOException {
         JsonObject root = new JsonObject();
         JsonObject usersObj = new JsonObject();
 
-        for (Map.Entry<UUID, Set<String>> entry : this.userPermissions.entrySet()) {
+        for (Map.Entry<
+            UUID,
+            Set<String>
+        > entry : this.userPermissions.entrySet()) {
             JsonArray asArray = new JsonArray();
             entry.getValue().forEach(asArray::add);
             String memberName = entry.getKey().toString();
@@ -295,7 +351,10 @@ public final class PermKitPermissionProvider extends BlockingDiskFile implements
 
         JsonObject groupsObj = new JsonObject();
 
-        for (Map.Entry<String, Set<String>> entry : this.groupPermissions.entrySet()) {
+        for (Map.Entry<
+            String,
+            Set<String>
+        > entry : this.groupPermissions.entrySet()) {
             JsonArray asArray = new JsonArray();
             entry.getValue().forEach(asArray::add);
             groupsObj.add(entry.getKey(), asArray);
@@ -305,11 +364,12 @@ public final class PermKitPermissionProvider extends BlockingDiskFile implements
             root.add("groups", groupsObj);
         }
 
-        fileWriter.write(GSON.toJson((JsonElement)root));
+        fileWriter.write(GSON.toJson((JsonElement) root));
     }
 
     @Override
-    protected void create(@Nonnull BufferedWriter fileWriter) throws IOException {
+    protected void create(@Nonnull BufferedWriter fileWriter)
+        throws IOException {
         try (JsonWriter jsonWriter = new JsonWriter(fileWriter)) {
             jsonWriter.beginObject();
             jsonWriter.endObject();

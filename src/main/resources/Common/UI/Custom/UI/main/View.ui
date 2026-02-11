@@ -1,12 +1,12 @@
 $S = "../Sounds.ui";
-$C = "../Common.ui";
-$G = "Generics.ui";
+$C = "../../Common.ui";
+$G = "../Generics.ui";
 
 $G.@GNOverlayDarkend {}
 
 Group #PermissionSettingsPage {
   Anchor: (Width: 400, Height: 250);
-  Background: (TexturePath: "assets/BackgroundRoundedWBorderx64.png", Border: 10);
+  Background: (TexturePath: "../assets/BackgroundRoundedWBorderx64.png", Border: 10);
   Padding: (Vertical: 10, Horizontal: 20);
 
   Group {
@@ -36,24 +36,8 @@ Group #PermissionSettingsPage {
     $G.@GNHorizontalSpacer {}
     $G.@GNHorizontalSpacer {}
 
-    Group #ButtonGroup {
+    Group #Content {
       LayoutMode: Top;
-
-      $G.@GNTextButtonPrimary #ButtonManage {
-        Text: %ui.permissionmenu.main.actions.manage.text;
-      }
-
-      $G.@GNHorizontalSpacer {}
-
-      $G.@GNTextButtonPrimary #ButtonAudit {
-        Text: %ui.permissionmenu.main.actions.audit.text;
-      }
-
-      $G.@GNHorizontalSpacer {}
-
-      $G.@GNTextButtonPrimary #ButtonSettings {
-        Text: %ui.permissionmenu.main.actions.settings.text;
-      }
     }
   }
 }

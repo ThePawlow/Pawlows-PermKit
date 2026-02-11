@@ -1,0 +1,19 @@
+$S = "../Sounds.ui";
+$C = "../Common.ui";
+$G = "../../Generics.ui";
+
+$G.@GNTextButtonPrimary #ButtonManage {
+  Text: %ui.permissionmenu.main.actions.manage.text;
+}
+
+$G.@GNHorizontalSpacer {}
+
+$G.@GNTextButtonPrimary #ButtonAudit {
+  Text: %ui.permissionmenu.main.actions.audit.text;
+}
+
+$G.@GNHorizontalSpacer {}
+
+$G.@GNTextButtonPrimary #ButtonSettings {
+  Text: %ui.permissionmenu.main.actions.settings.text;
+}

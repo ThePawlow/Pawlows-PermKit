@@ -3,7 +3,7 @@ $G = "../Generics.ui";
 
 $G.@GNOverlayDarkend {}
 
-Group #PermissionManageMainPage {
+Group #ManageMainView {
   Anchor: (Width: 800, Height: 600);
   Background: (TexturePath: "../assets/BackgroundRoundedWBorderx64.png", Border: 10);
   Padding: (Vertical: 10, Horizontal: 20);
@@ -13,22 +13,21 @@ Group #PermissionManageMainPage {
     Padding: (Bottom: 10);
     Anchor: (Top: 10, Bottom: 10);
 
-    // Loaded by code
-    Group #DynamicContent {}
+    Group #Content {}
   }
 }
 
-Group #PermissionManageOverviewPage {
+Group #ManageSideView {
   LayoutMode: CenterMiddle;
-  Anchor: (Left: 30, Width: 200);
+  Anchor: (Left: 30, Width: 250);
   Background: $G.@GNBackgroundColor;
-  Padding: (Vertical: 10, Horizontal: 20);
 
   Group {
     LayoutMode: Top;
 
     $G.@GNTitleLabel #TitleLabel {
       Text: %ui.permissionmenu.title;
+      Padding: (Bottom: 10);
     }
 
     Group #TitleGroup {

@@ -1,7 +1,8 @@
 $G = "../../Generics.ui";
 
-// Manage - Page | Overview
-Group #PageManageContentOverview {
+Group #ContentCategory {
+  LayoutMode: Top;
+
   Group #Header {
     LayoutMode: Left;
 
@@ -9,9 +10,9 @@ Group #PageManageContentOverview {
       LayoutMode: Left;
 
       Group #IconWrench {
-        LayoutMode: Middle;
+          LayoutMode: Middle;
         Anchor: (Width: 32, Height: 32);
-        Background: (TexturePath: "../../assets/Icon_Wrenchx64.png");
+            Background: (TexturePath: "../../assets/Icon_OpenBookx64.png");
       }
 
       $G.@GNTitleLabel #TitleLabel {
@@ -21,12 +22,12 @@ Group #PageManageContentOverview {
     }
 
     $G.@GNSubtitleLabel #Subtitle {
-      Text: %ui.permissionmenu.manage.actions.category.text;
+      Text: %ui.permissionmenu.manage.title;
       Padding: (Top: 5, Left: 15);
     }
   }
 
-  Group #DynamicEntryList {
+   Group #CategoryList {
     LayoutMode: TopScrolling;
     Padding: (Top: 10);
     ScrollbarStyle: (

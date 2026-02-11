@@ -5,18 +5,23 @@ import com.hypixel.hytale.server.core.command.system.basecommands.AbstractComman
 import com.hypixel.hytale.server.core.permissions.PermissionsModule;
 import org.checkerframework.checker.nullness.compatqual.NonNullDecl;
 
-public class PermissionMenuCommands extends AbstractCommandCollection {
+public class MenuCommands extends AbstractCommandCollection {
 
-    public PermissionMenuCommands() {
+    public MenuCommands() {
         super("permkit", "An UI for managing Permissions");
-        this.addSubCommand(new PermissionMenuDebugCommands());
-        this.addSubCommand(new PermissionMenuShowCommand());
+        this.addSubCommand(new MenuDebugCommands());
+        this.addSubCommand(new MenuShowCommand());
     }
 
     @Override
     public boolean hasPermission(@NonNullDecl CommandSender sender) {
-        System.out.println(sender.getDisplayName() + " | Must have: " + this.getPermission());
+        System.out.println(
+            sender.getDisplayName() + " | Must have: " + this.getPermission()
+        );
 
-        return PermissionsModule.get().hasPermission(sender.getUuid(), this.getPermission());
+        return PermissionsModule.get().hasPermission(
+            sender.getUuid(),
+            this.getPermission()
+        );
     }
 }

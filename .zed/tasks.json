@@ -1,0 +1,15 @@
+[
+  {
+    "label": "Build Java25 Mod",
+    "command": "mvn",
+    "args": [
+      "package",
+      "-Dmod.output.dir='/run/media/pawlow/Data (Games_Dev)/Hytale/servers/latest/mods'",
+      "-f",
+      "pom.xml",
+    ],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+  },
+]
