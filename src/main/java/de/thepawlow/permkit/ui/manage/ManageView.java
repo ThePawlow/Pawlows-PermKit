@@ -18,17 +18,20 @@ import dev.jonrapp.hytaleReactiveUi.pages.ReactiveUiPage;
 import javax.annotation.Nonnull;
 
 public class ManageView extends ReactiveUiPage {
+    private final ManageViewModel viewModel;
 
     public ManageView(@Nonnull PlayerRef playerRef) {
         super(playerRef, CustomPageLifetime.CanDismiss);
+        this.viewModel = new ManageViewModel();
+        this.viewModel.setUpdateCallback(this::refreshView);
     }
 
     @Override
     public void build(
-        @Nonnull Ref<EntityStore> ref,
-        @Nonnull UICommandBuilder commandBuilder,
-        @Nonnull UIEventBuilder events,
-        @Nonnull Store<EntityStore> store
+            @Nonnull Ref<EntityStore> ref,
+            @Nonnull UICommandBuilder commandBuilder,
+            @Nonnull UIEventBuilder events,
+            @Nonnull Store<EntityStore> store
     ) {
         commandBuilder.append("UI/manage/View.ui");
 
@@ -36,39 +39,36 @@ public class ManageView extends ReactiveUiPage {
             CustomUIEventBindingType.Activating,
             "#ButtonDiscard",
             events,
-            EventBinding.action("Clicked:#ButtonDiscard").onEvent(context ->
-                EventHandles.DiscardToMainView(PlayerContext.from(context))
-            )
+            EventBinding.action("Clicked:#ButtonDiscard")
+                .onEvent(context -> viewModel.discardChanges(PlayerContext.from(context)))
         );
 
         bindEvent(
             CustomUIEventBindingType.Activating,
             "#ButtonCategory",
             events,
-            EventBinding.action("Clicked:#ButtonCategory").onEvent(context ->
-                interactionCategory(PlayerContext.from(context))
-            )
+            EventBinding.action("Clicked:#ButtonCategory")
+                .onEvent(context -> viewModel.navigateToCategory(PlayerContext.from(context)))
         );
 
         bindEvent(
             CustomUIEventBindingType.Activating,
             "#ButtonPermissions",
             events,
-            EventBinding.action("Clicked:#ButtonPermissions").onEvent(context ->
-                interactionPermission(PlayerContext.from(context))
-            )
+            EventBinding.action("Clicked:#ButtonPermissions")
+                .onEvent(context -> viewModel.navigateToPermissions(PlayerContext.from(context)))
         );
 
-        showPrimaryElement(new Overview(this));
+        refreshView();
     }
 
-    private void interactionPermission(PlayerContext context) {
-        showPrimaryElement(new Permission(this));
-        sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
-    }
-
-    private void interactionCategory(PlayerContext context) {
-        showPrimaryElement(new Category(this));
+    private void refreshView() {
+        ManageSection section = viewModel.getCurrentSection();
+        switch (section) {
+            case OVERVIEW -> showPrimaryElement(new Overview(this, viewModel));
+            case PERMISSIONS -> showPrimaryElement(new Permission(this, viewModel));
+            case CATEGORY -> showPrimaryElement(new Category(this, viewModel));
+        }
         sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
     }
 
