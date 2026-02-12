@@ -9,15 +9,16 @@ import com.hypixel.hytale.server.core.universe.PlayerRef;
 import com.hypixel.hytale.server.core.universe.world.storage.EntityStore;
 import de.thepawlow.permkit.PermKitPlugin;
 import de.thepawlow.permkit.ui.main.pages.Overview;
-import dev.jonrapp.hytaleReactiveUi.bindings.UIBindable;
-import dev.jonrapp.hytaleReactiveUi.bindings.UIBinding;
 import dev.jonrapp.hytaleReactiveUi.pages.ReactiveUiPage;
 import javax.annotation.Nonnull;
 
 public class MainView extends ReactiveUiPage {
+    private final MainViewModel viewModel;
 
     public MainView(@Nonnull PlayerRef playerRef) {
         super(playerRef, CustomPageLifetime.CanDismiss);
+        this.viewModel = new MainViewModel();
+        this.viewModel.setUpdateCallback(this::refreshView);
     }
 
     @Override
@@ -30,7 +31,15 @@ public class MainView extends ReactiveUiPage {
         commandBuilder.append("UI/main/View.ui");
         commandBuilder.set("#Subtitle.Text", "V " + PermKitPlugin.get().getManifest().getVersion().toString());
 
-        showPrimaryElement(new Overview(this));
+        showPrimaryElement(new Overview(this, viewModel));
+    }
+
+    private void refreshView() {
+        MainViewModel.Sections section = viewModel.getCurrentSection();
+        switch (section) {
+            case OVERVIEW -> showPrimaryElement(new Overview(this, viewModel));
+        }
+        sendUpdate(new UICommandBuilder(), new UIEventBuilder(), false);
     }
 
     @Override

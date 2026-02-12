@@ -17,6 +17,8 @@ import dev.jonrapp.hytaleReactiveUi.events.EventBinding;
 import dev.jonrapp.hytaleReactiveUi.pages.ReactiveUiPage;
 import javax.annotation.Nonnull;
 
+import static de.thepawlow.permkit.ui.manage.ManageViewModel.Sections.OVERVIEW;
+
 public class ManageView extends ReactiveUiPage {
     private final ManageViewModel viewModel;
 
@@ -63,7 +65,7 @@ public class ManageView extends ReactiveUiPage {
     }
 
     private void refreshView() {
-        ManageSection section = viewModel.getCurrentSection();
+        ManageViewModel.Sections section = viewModel.getCurrentSection();
         switch (section) {
             case OVERVIEW -> showPrimaryElement(new Overview(this, viewModel));
             case PERMISSIONS -> showPrimaryElement(new Permission(this, viewModel));

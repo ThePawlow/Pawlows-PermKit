@@ -1,5 +1,6 @@
 package de.thepawlow.permkit.ui.manage;
 
+import de.thepawlow.permkit.ui.BaseViewModel;
 import de.thepawlow.permkit.ui.EventHandles;
 import de.thepawlow.permkit.ui.PlayerContext;
 import de.thepawlow.permkit.ui.manage.dynamic.CategoryItemData;
@@ -8,28 +9,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ManageViewModel {
-    private ManageSection currentSection = ManageSection.OVERVIEW;
-    private final List<CategoryItemData> categories = new ArrayList<>();
-    private ViewUpdateCallback updateCallback;
-
-    public ManageViewModel() {
-        loadCategories();
+public class ManageViewModel extends BaseViewModel<ManageViewModel.Sections> {
+    public enum Sections {
+        OVERVIEW,
+        PERMISSIONS,
+        CATEGORY
     }
 
-    public void setUpdateCallback(ViewUpdateCallback callback) {
-        this.updateCallback = callback;
+    private final List<CategoryItemData> categories = new ArrayList<>();
+
+    public ManageViewModel() {
+        super(Sections.OVERVIEW);
+        loadCategories();
     }
 
     // Commands
     public void navigateToPermissions(PlayerContext context) {
-        currentSection = ManageSection.PERMISSIONS;
-        notifyViewUpdate();
+        setCurrentSection(Sections.PERMISSIONS);
     }
 
     public void navigateToCategory(PlayerContext context) {
-        currentSection = ManageSection.CATEGORY;
-        notifyViewUpdate();
+        setCurrentSection(Sections.CATEGORY);
     }
 
     public void discardChanges(PlayerContext context) {
@@ -37,10 +37,6 @@ public class ManageViewModel {
     }
 
     // State getters
-    public ManageSection getCurrentSection() {
-        return currentSection;
-    }
-
     public List<CategoryItemData> getCategories() {
         return Collections.unmodifiableList(categories);
     }
@@ -49,16 +45,5 @@ public class ManageViewModel {
         for (int i = 0; i < 20; i++) {
             categories.add(new CategoryItemData(i, "Category " + i));
         }
-    }
-
-    private void notifyViewUpdate() {
-        if (updateCallback != null) {
-            updateCallback.onViewNeedsUpdate();
-        }
-    }
-
-    @FunctionalInterface
-    public interface ViewUpdateCallback {
-        void onViewNeedsUpdate();
     }
 }

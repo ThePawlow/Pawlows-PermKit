@@ -7,17 +7,19 @@ import com.hypixel.hytale.server.core.ui.builder.UIEventBuilder;
 import de.thepawlow.permkit.Permissions;
 import de.thepawlow.permkit.ui.PlayerContext;
 import de.thepawlow.permkit.ui.main.MainView;
+import de.thepawlow.permkit.ui.main.MainViewModel;
 import de.thepawlow.permkit.ui.manage.ManageView;
+import de.thepawlow.permkit.ui.manage.ManageViewModel;
 import de.thepawlow.permkit.ui.settings.SettingsView;
 import dev.jonrapp.hytaleReactiveUi.elements.Element;
 import dev.jonrapp.hytaleReactiveUi.events.EventBinding;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Overview extends Element<MainView> {
+    private final MainViewModel viewModel;
 
-    public Overview(MainView pageRef) {
+    public Overview(MainView pageRef, MainViewModel viewModel) {
         super(pageRef);
+        this.viewModel = viewModel;
     }
 
     @Override
