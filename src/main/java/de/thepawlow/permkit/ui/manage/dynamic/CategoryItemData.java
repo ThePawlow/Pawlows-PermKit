@@ -5,23 +5,16 @@ import java.util.Collections;
 import java.util.List;
 
 public class CategoryItemData {
-    private final int id;
     private String title;
     private List<String> permissions = new ArrayList<>();
 
-    public CategoryItemData(int id, String title) {
-        this.id = id;
+    public CategoryItemData(String title) {
         this.title = title;
     }
 
-    public CategoryItemData(int id, String title, List<String> permissions) {
-        this.id = id;
+    public CategoryItemData(String title, List<String> permissions) {
         this.title = title;
         this.permissions = permissions;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public void setTitle(String title) {

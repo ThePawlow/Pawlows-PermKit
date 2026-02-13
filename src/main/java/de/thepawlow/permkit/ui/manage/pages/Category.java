@@ -20,10 +20,10 @@ public class Category extends Element<ManageView> {
         this.viewModel = viewModel;
         // TODO - Boilerplate code for loading it actually
         var categories = new ArrayList<CategoryItemData>();
-        categories.add(new CategoryItemData(0, "de.lorem.ipsum"));
-        categories.add(new CategoryItemData(1, "de.lorem.suppp", List.of(new String[]{"steal", "steal even more"})));
-        categories.add(new CategoryItemData(2, "de.lorem.supp2p", List.of(new String[]{"steal but fancy"})));
-        categories.add(new CategoryItemData(3, "de.lorem.supp2ap"));
+        categories.add(new CategoryItemData("de.lorem.ipsum"));
+        categories.add(new CategoryItemData("de.lorem.suppp", List.of(new String[]{"steal", "steal even more"})));
+        categories.add(new CategoryItemData( "de.lorem.supp2p", List.of(new String[]{"steal but fancy"})));
+        categories.add(new CategoryItemData( "de.lorem.supp2ap"));
 
         viewModel.setCategories(categories);
     }
