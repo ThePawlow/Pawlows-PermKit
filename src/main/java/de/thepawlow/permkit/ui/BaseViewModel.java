@@ -21,7 +21,7 @@ public abstract class BaseViewModel<TSection extends Enum<TSection>> {
         notifyViewUpdate();
     }
 
-    protected void notifyViewUpdate() {
+    public void notifyViewUpdate() {
         if (updateCallback != null) {
             updateCallback.onViewNeedsUpdate();
         }

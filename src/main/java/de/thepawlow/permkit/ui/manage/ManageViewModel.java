@@ -16,11 +16,10 @@ public class ManageViewModel extends BaseViewModel<ManageViewModel.Sections> {
         CATEGORY
     }
 
-    private final List<CategoryItemData> categories = new ArrayList<>();
+    private List<CategoryItemData> categories = new ArrayList<>();
 
     public ManageViewModel() {
         super(Sections.OVERVIEW);
-        loadCategories();
     }
 
     // Commands
@@ -41,9 +40,7 @@ public class ManageViewModel extends BaseViewModel<ManageViewModel.Sections> {
         return Collections.unmodifiableList(categories);
     }
 
-    private void loadCategories() {
-        for (int i = 0; i < 20; i++) {
-            categories.add(new CategoryItemData(i, "Category " + i));
-        }
+    public void setCategories(List<CategoryItemData> categories) {
+        this.categories = categories;
     }
 }

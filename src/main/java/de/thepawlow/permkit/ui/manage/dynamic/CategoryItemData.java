@@ -1,64 +1,41 @@
 package de.thepawlow.permkit.ui.manage.dynamic;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class CategoryItemData {
     private final int id;
-    private String name;
-    private String description;
-    private boolean isEnabled;
-    private int itemCount;
+    private String title;
+    private List<String> permissions = new ArrayList<>();
 
-    public CategoryItemData(int id, String name) {
+    public CategoryItemData(int id, String title) {
         this.id = id;
-        this.name = name;
-        this.description = "";
-        this.isEnabled = true;
-        this.itemCount = 0;
+        this.title = title;
     }
 
-    // Full constructor if you need more control
-    public CategoryItemData(int id, String name, String description, boolean isEnabled, int itemCount) {
+    public CategoryItemData(int id, String title, List<String> permissions) {
         this.id = id;
-        this.name = name;
-        this.description = description;
-        this.isEnabled = isEnabled;
-        this.itemCount = itemCount;
+        this.title = title;
+        this.permissions = permissions;
     }
 
-    // Getters
     public int getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public String getTitle() {
+        return title;
     }
 
-    public String getDescription() {
-        return description;
+    public List<String> getPermissions() {
+        return Collections.unmodifiableList(permissions);
     }
 
-    public boolean isEnabled() {
-        return isEnabled;
-    }
-
-    public int getItemCount() {
-        return itemCount;
-    }
-
-    // Setters (if you need mutable data)
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setEnabled(boolean enabled) {
-        isEnabled = enabled;
-    }
-
-    public void setItemCount(int itemCount) {
-        this.itemCount = itemCount;
+    public void setPermissions(List<String> permissions) {
+        this.permissions = new ArrayList<>(permissions);
     }
 }
